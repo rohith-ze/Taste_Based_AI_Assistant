@@ -1,0 +1,54 @@
+
+import os
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.prompts import ChatPromptTemplate
+from data_gathering import get_playlist, get_last_played, get_song_list, get_liked_songs
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the API key from environment variables
+api_key = os.getenv("GOOGLE_API_KEY")
+
+# Check if the API key is available
+if not api_key:
+    raise ValueError("GOOGLE_API_KEY not found in .env file")
+
+# Initialize the language model
+llm = ChatGoogleGenerativeAI(
+    model="models/gemini-2.0-flash-lite",
+    temperature=0.7,
+    top_p=0.85,
+    google_api_key=api_key
+)
+
+# Define the tools the agent can use
+tools = [get_playlist, get_last_played, get_song_list, get_liked_songs]
+
+# Create the prompt template
+prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system", "You are a helpful assistant that provides information about the user's Spotify account. You will be given a question from a user and you will have to answer it based on the user's spotify data. You have to return the actions you have performed to get to the answer."),
+        ("human", "{input}"),
+        ("placeholder", "{agent_scratchpad}"),
+    ]
+)
+
+# Create the agent
+agent = create_tool_calling_agent(llm, tools, prompt)
+
+# Create the agent executor
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+if __name__ == "__main__":
+    # Example usage of the agent
+    query = " get the playlist Id first and find What are the songs available in playlist Hype code - Mid relax?"
+    response = agent_executor.invoke({"input": query})
+    print(response)
+    """
+    query = "What was the last song I listened to?"
+    response = agent_executor.invoke({"input": query})
+    print(response)
+    """
