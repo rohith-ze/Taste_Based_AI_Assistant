@@ -71,20 +71,20 @@ def get_watched_movies(emby_server, api_key, user_id):
 
 # Qloo integration
 def get_qloo_recommendations(movie_titles):
-    QLOO_API_URL = "https://api.qloo.com/v1/recommendations"
+    QLOO_API_URL = "https://hackathon.api.qloo.com/recommendations" 
 
     headers = {
-        "x-api-key": os.getenv("QLOO_API_KEY").strip(),
+        "x-api-key": os.getenv("QLOO_API_KEY"),
         "Content-Type": "application/json"
     }
 
-    payload = {
+    params = {
         "type": "movie",
-        "items": movie_titles,
+        "items": ",".join(movie_titles),  # Qloo expects items as comma-separated string
         "limit": 5
     }
 
-    response = requests.post(QLOO_API_URL, json=payload, headers=headers)
+    response = requests.get(QLOO_API_URL, headers=headers, params=params) 
 
     if response.status_code == 200:
         return response.json().get("recommendations", [])
