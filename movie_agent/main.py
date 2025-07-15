@@ -43,6 +43,6 @@ def main():
     print("\n🧠 Generating Taste Summary using Gemini...")
     summary = explain_recommendations(watched_titles)
     print("\n📜 Taste Summary:\n", summary)
-
+    
 if __name__ == "__main__":
     main()
