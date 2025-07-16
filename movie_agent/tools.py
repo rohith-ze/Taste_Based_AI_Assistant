@@ -22,14 +22,14 @@ def fetch_watched_movies() -> list:
     titles = [m["Name"] for m in movies if m.get("Name")]
     return titles or ["[ERROR] No watched movies found."]
 
-
 @tool
 def qloo_recommend_movies(genre: str = "urn:tag:genre:media:comedy", year_min: int = 2022) -> list:
     """Get movie recommendations based on taste using Qloo's Insights API."""
     return get_qloo_recommendations(genre_urn=genre, year_min=year_min)
 
-
 @tool
-def gemini_taste_summary(titles: list) -> str:
-    """Explain movie taste based on a list of watched movie titles using Gemini."""
-    return explain_recommendations(titles)
+def gemini_taste_summary(watched: list, recommended: list) -> str:
+    """
+    Explain user's movie taste and how the recommended movies align with it using Gemini.
+    """
+    return explain_recommendations(watched, recommended)

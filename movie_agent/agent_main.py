@@ -10,33 +10,27 @@ load_dotenv()
 
 api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
-    raise ValueError("GEMINI_API_KEY not found in .env file")
+    raise ValueError("GOOGLE_API_KEY not found in .env file")
 
-# Initialize Gemini 2 agent
 llm = ChatGoogleGenerativeAI(
-    model="models/gemini-2.0-pro",  # or "models/gemini-1.5-flash"
+    model="models/gemini-2.0-pro",
     temperature=0.7,
     google_api_key=api_key
 )
 
-# Tools the agent can call
 tools = [fetch_watched_movies, qloo_recommend_movies, gemini_taste_summary]
 
-# Prompt Template
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a movie taste assistant. Help users explore what kind of movies they like and what to watch next based on their Emby viewing history."),
+    ("system", "You are a movie taste assistant. Use Emby history to identify what the user likes. Recommend similar movies using qloo_recommend_movies tools definitions and do not use your own recommendations (from gemini) and explain their relevance using Gemini."),
     ("human", "{input}"),
     ("placeholder", "{agent_scratchpad}")
 ])
 
-# Create agent
 agent = create_tool_calling_agent(llm, tools, prompt)
 
-# Executor to invoke agent
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 if __name__ == "__main__":
-    # Example query
-    query = "Based on my recently watched movies, what kind of taste do I have? Also suggest 5 new movies I might enjoy."
-    response = agent_executor.invoke({"input": query})
-    print("\n🎯 Agent Response:\n", response)
+    query = "What kind of movies do I like based on my Emby history, and are the Qloo recommendations a good fit?"
+    result = agent_executor.invoke({"input": query})
+    print("\n🎯 Agent Response:\n", result)

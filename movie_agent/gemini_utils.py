@@ -3,25 +3,23 @@ import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 
-# Load environment variables
 load_dotenv()
 
-# Configure Gemini with API key from .env file
 api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
     raise ValueError("Missing GEMINI_API_KEY in .env file.")
 genai.configure(api_key=api_key)
 
-# Initialize the Gemini 2.0 Flash model
-model = genai.GenerativeModel(model_name="models/gemini-1.5-flash")  # Correct model name
+model = genai.GenerativeModel(model_name="models/gemini-1.5-flash")
 
-def explain_recommendations(watched_titles):
-    if not watched_titles:
-        return "[ERROR] No watched titles provided."
+def explain_recommendations(watched_titles, recommended_titles):
+    if not watched_titles or not recommended_titles:
+        return "[ERROR] Both watched and recommended movie lists are required."
 
     prompt = (
         f"I have watched these movies: {', '.join(watched_titles[:5])}.\n"
-        "Can you explain my movie taste based on these, and recommend 5 more?"
+        f"And these movies were recommended to me: {', '.join(recommended_titles[:5])}.\n"
+        "Based on this, analyze my movie taste and explain why these recommendations are a good fit."
     )
 
     try:
