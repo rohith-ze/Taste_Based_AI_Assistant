@@ -7,7 +7,6 @@ from emby_utils import (
     get_qloo_recommendations
 )
 from gemini_utils import explain_recommendations  # Optional
-
 load_dotenv()
 
 EMBY_API_KEY = os.getenv("EMBY_API_KEY")
@@ -19,7 +18,7 @@ def main():
     user_id = get_user_id(EMBY_SERVER, EMBY_API_KEY, USER_NAME)
     if not user_id:
         print("❌ Could not get Emby USER_ID.")
-        return
+        return 
 
     print("📺 Fetching watched movies from Emby...")
     watched = get_watched_movies(EMBY_SERVER, EMBY_API_KEY, user_id)
