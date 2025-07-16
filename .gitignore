@@ -25,7 +25,8 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
+C:\Users\AJAY\Music\VS_CODIAN\Taste_Based_AI_Assistant\movie_agent\__pycache__\emby_utils.cpython-312.pyc
+C:\Users\AJAY\Music\VS_CODIAN\Taste_Based_AI_Assistant\movie_agent\__pycache__
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -201,3 +202,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+movie_agent/__pycache__/emby_utils.cpython-312.pyc
+movie_agent/__pycache__/emby_utils.cpython-312.pyc
+movie_agent/__pycache__/gemini_utils.cpython-312.pyc
+movie_agent/__pycache__/tools.cpython-312.pyc
+movie_agent/__pycache__/emby_utils.cpython-312.pyc
+movie_agent/__pycache__/gemini_utils.cpython-312.pyc
+movie_agent/__pycache__/tools.cpython-312.pyc
+movie_agent/__pycache__/emby_utils.cpython-312.pyc
+movie_agent/__pycache__/emby_utils.cpython-312.pyc
+movie_agent/__pycache__/gemini_utils.cpython-312.pyc
