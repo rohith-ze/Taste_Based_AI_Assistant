@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Fetch Emby user ID by name
 def get_user_id(emby_server, api_key, username):
     url = f"{emby_server}/Users"
     try:
@@ -31,6 +32,7 @@ def get_user_id(emby_server, api_key, username):
         print("[DEBUG] URL tried:", url)
         return None
 
+# Fetch watched movies from Emby
 def get_watched_movies(emby_server, api_key, user_id):
     url = f"{emby_server}/Users/{user_id}/Items"
     params = {
@@ -69,26 +71,29 @@ def get_watched_movies(emby_server, api_key, user_id):
         'People': m.get('People', [])
     } for m in movies]
 
-# Qloo integration
-def get_qloo_recommendations(movie_titles):
-    QLOO_API_URL = "https://hackathon.api.qloo.com/recommendations" 
-
+# Use Qloo Insights API for movie recommendations
+def get_qloo_recommendations(genre_urn="urn:tag:genre:media:comedy", year_min=2022):
+    url = "https://hackathon.api.qloo.com/v2/insights"
     headers = {
-        "x-api-key": os.getenv("QLOO_API_KEY"),
-        "Content-Type": "application/json"
+        "x-api-key": os.getenv("QLOO_API_KEY")
     }
 
     params = {
-        "type": "movie",
-        "items": ",".join(movie_titles),  # Qloo expects items as comma-separated string
-        "limit": 5
+        "filter.type": "urn:entity:movie",
+        "filter.tags": genre_urn,
+        "filter.release_year.min": year_min
     }
 
-    response = requests.get(QLOO_API_URL, headers=headers, params=params) 
-
-    if response.status_code == 200:
-        return response.json().get("recommendations", [])
-    else:
-        print("[ERROR] Qloo API failed:", response.status_code)
-        print("[DEBUG] Response:", response.text)
+    try:
+        res = requests.get(url, headers=headers, params=params)
+        if res.status_code == 200:
+            results = res.json().get("results", {})
+            entities = results.get("entities", [])
+            return [e.get("name") for e in entities if e.get("name")]
+        else:
+            print("[❌] Qloo Insights API failed:", res.status_code)
+            print(res.text)
+            return []
+    except Exception as e:
+        print("[❌] Exception in Qloo insights:", e)
         return []
