@@ -28,7 +28,7 @@ def qloo_recommend_movies(genre: str = "urn:tag:genre:media:comedy", year_min: i
     return get_qloo_recommendations(genre_urn=genre, year_min=year_min)
 
 @tool
-def gemini_taste_summary(watched: list, recommended: list) -> str:
+def gemini_taste_summary(watched: list[str], recommended: list[str]) -> str:
     """
     Explain user's movie taste and how the recommended movies align with it using Gemini.
     """
