@@ -13,7 +13,7 @@ if not api_key:
     raise ValueError("GOOGLE_API_KEY not found in .env file")
 
 llm = ChatGoogleGenerativeAI(
-    model="models/gemini-2.0-flash-lite",
+    model="gemini-1.5-pro-latest",
     temperature=0.7,
     google_api_key=api_key
 )
