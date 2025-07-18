@@ -5,7 +5,10 @@ __pycache__/
 
 # C extensions
 *.so
-
+access_token.json
+return_data.json
+apitest.py
+earth
 # Distribution / packaging
 .Python
 build/
@@ -36,6 +39,12 @@ C:\Users\AJAY\Music\VS_CODIAN\Taste_Based_AI_Assistant\movie_agent\__pycache__
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+
+
+heatmaps.json
+heatmap.html
+1heatmaps.json
+tesapi.py
 
 # Unit test / coverage reports
 htmlcov/
