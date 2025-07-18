@@ -36,6 +36,8 @@ def get_playlist():
     return json.dumps(parsed_playlists, indent=2)
 
 
+# In data_gathering.py, modify all tools to return proper JSON:
+
 @tool
 def get_last_played():
     """Fetches the user's recently played tracks with detailed information."""
@@ -45,29 +47,22 @@ def get_last_played():
     data = response.json()
 
     if 'items' not in data:
-        return []
+        return json.dumps({"tracks": []})  # Return empty but valid JSON
 
-    parsed_tracks = []
+    tracks = []
     for item in data['items']:
         track = item.get('track', {})
         if not track:
             continue
 
-        track_name = track.get('name')
-        artists = [artist['name'] for artist in track.get('artists', [])]
-        album_name = track.get('album', {}).get('name')
-        release_date = track.get('album', {}).get('release_date')
-        track_uri = track.get('uri')
-
-        parsed_tracks.append({
-            "track_name": track_name,
-            "artists": artists,
-            "album_name": album_name,
-            "release_date": release_date,
-            
+        tracks.append({
+            "track_name": track.get('name', "Unknown"),
+            "artists": [artist['name'] for artist in track.get('artists', [])],
+            "album_name": track.get('album', {}).get('name', "Unknown"),
+            "release_date": track.get('album', {}).get('release_date', "Unknown")
         })
-    return json.dumps(parsed_tracks, indent=2)
 
+    return json.dumps({"tracks": tracks}, ensure_ascii=False)  # Proper JSON string
 
 @tool
 def get_song_list(playlist_ID:str) :
