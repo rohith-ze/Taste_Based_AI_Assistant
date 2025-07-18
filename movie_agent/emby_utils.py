@@ -40,6 +40,7 @@ def get_watched_movies(emby_server, api_key, user_id):
         'Recursive': 'true',
         'SortBy': 'DatePlayed',
         'Filters': 'IsPlayed',
+        'Fields': 'Genres,GenreItems,Tags',
         'api_key': api_key
     }
 
@@ -67,9 +68,14 @@ def get_watched_movies(emby_server, api_key, user_id):
         'Name': m.get('Name'),
         'Id': m.get('Id'),
         'Year': m.get('ProductionYear'),
-        'Genres': m.get('Genres', []),
+        'Genres': (
+            m.get('Genres') or
+            [g['Name'] for g in m.get('GenreItems', []) if 'Name' in g] or
+            m.get('Tags', [])
+        ),
         'People': m.get('People', [])
     } for m in movies]
+
 
 # Use Qloo Insights API for movie recommendations
 def get_qloo_recommendations(genre_urn="urn:tag:genre:media:comedy", year_min=2022):
