@@ -10,7 +10,7 @@ if not api_key:
     raise ValueError("Missing GEMINI_API_KEY in .env file.")
 genai.configure(api_key=api_key)
 
-model = genai.GenerativeModel(model_name="models/gemini-2.0-flash-lite")
+model = genai.GenerativeModel(model_name="models/gemini-1.5-flash")
 
 def explain_recommendations(watched_titles, recommended_titles):
     if not watched_titles or not recommended_titles:
