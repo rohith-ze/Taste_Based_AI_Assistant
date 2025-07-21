@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="welcome">
+  <h1>Welcome to Taste‑Based AI</h1>
+  <p>Explore your movie and music recommendations!</p>
+  <a class="btn" href="{% url 'movies' %}">Go to Movies</a>
+  <a class="btn" href="{% url 'music' %}">Go to Music</a>
+</section>
+{% endblock %}
