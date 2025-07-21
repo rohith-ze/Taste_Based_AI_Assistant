@@ -127,3 +127,135 @@ def get_emby_play_url(movie_id: str) -> str:
 
     params = urlencode({'api_key': api_key})
     return f"{emby_server}/web/index.html#!/item?id={movie_id}&{params}"
+
+def get_trending_movies(emby_server, api_key, user_id):
+    """
+    Fetches recently added movies from Emby to serve as "trending" content.
+    """
+    url = f"{emby_server}/Users/{user_id}/Items/Latest"
+    params = {
+        'IncludeItemTypes': 'Movie',
+        'api_key': api_key,
+        'Fields': 'Genres,CommunityRating',
+        'Limit': 20
+    }
+    try:
+        res = requests.get(url, params=params)
+        res.raise_for_status()  # Raise an exception for bad status codes
+        data = res.json()
+        return [{
+            'name': item.get('Name'),
+            'Id': item.get('Id'),
+            'image_url': f"{emby_server}/Items/{item.get('Id')}/Images/Primary?api_key={api_key}",
+            'genres': item.get('Genres', []),
+            'rating': round(item.get('CommunityRating', 0), 1)
+        } for item in data]
+    except requests.exceptions.RequestException as e:
+        print(f"[❌] Exception while fetching trending movies: {e}")
+        return []
+
+def get_popular_movies(emby_server, api_key):
+    """
+    Fetches popular movies from Emby based on play count.
+    """
+    url = f"{emby_server}/Items"
+    params = {
+        'IncludeItemTypes': 'Movie',
+        'Recursive': 'true',
+        'SortBy': 'PlayCount',
+        'SortOrder': 'Descending',
+        'Limit': 20,
+        'Fields': 'Genres,CommunityRating',
+        'api_key': api_key
+    }
+    try:
+        res = requests.get(url, params=params)
+        res.raise_for_status()
+        data = res.json().get('Items', [])
+        return [{
+            'name': item.get('Name'),
+            'Id': item.get('Id'),
+            'image_url': f"{emby_server}/Items/{item.get('Id')}/Images/Primary?api_key={api_key}",
+            'genres': item.get('Genres', []),
+            'rating': round(item.get('CommunityRating', 0), 1)
+        } for item in data]
+    except requests.exceptions.RequestException as e:
+        print(f"[❌] Exception while fetching popular movies: {e}")
+        return []
+
+def get_continue_watching(emby_server, api_key, user_id):
+    """Fetches items that are in progress for the user."""
+    url = f"{emby_server}/Users/{user_id}/Items/Resume"
+    params = {
+        'Limit': 10,
+        'Fields': 'Genres,CommunityRating',
+        'api_key': api_key
+    }
+    try:
+        res = requests.get(url, params=params)
+        res.raise_for_status()
+        data = res.json().get('Items', [])
+        return [{
+            'name': item.get('Name'),
+            'Id': item.get('Id'),
+            'image_url': f"{emby_server}/Items/{item.get('Id')}/Images/Primary?api_key={api_key}",
+            'genres': item.get('Genres', []),
+            'rating': round(item.get('CommunityRating', 0), 1)
+        } for item in data]
+    except requests.exceptions.RequestException as e:
+        print(f"[❌] Exception while fetching continue watching items: {e}")
+        return []
+
+def get_emby_stream_url(movie_id: str) -> str:
+    """
+    Constructs a direct, embeddable stream URL for a given movie ID.
+    """
+    emby_server = os.getenv("EMBY_SERVER")
+    api_key = os.getenv("EMBY_API_KEY")
+    if not emby_server or not api_key:
+        return ""
+    return f"{emby_server}/Videos/{movie_id}/stream?api_key={api_key}&static=true"
+
+def get_continue_watching(emby_server, api_key, user_id):
+    """Fetches items that are in progress for the user."""
+    url = f"{emby_server}/Users/{user_id}/Items/Resume"
+    params = {
+        'Limit': 10,
+        'Fields': 'Genres',
+        'api_key': api_key
+    }
+    try:
+        res = requests.get(url, params=params)
+        res.raise_for_status()
+        data = res.json().get('Items', [])
+        return [{
+            'name': item.get('Name'),
+            'Id': item.get('Id'),
+            'image_url': f"{emby_server}/Items/{item.get('Id')}/Images/Primary?api_key={api_key}",
+            'genres': item.get('Genres', [])
+        } for item in data]
+    except requests.exceptions.RequestException as e:
+        print(f"[❌] Exception while fetching continue watching items: {e}")
+        return []
+
+def get_latest_music(emby_server, api_key):
+    """Fetches the latest music albums."""
+    url = f"{emby_server}/Items/Latest"
+    params = {
+        'IncludeItemTypes': 'MusicAlbum',
+        'Limit': 10,
+        'api_key': api_key
+    }
+    try:
+        res = requests.get(url, params=params)
+        res.raise_for_status()
+        data = res.json()
+        return [{
+            'name': item.get('Name'),
+            'Id': item.get('Id'),
+            'artist': item.get('AlbumArtist'),
+            'image_url': f"{emby_server}/Items/{item.get('Id')}/Images/Primary?api_key={api_key}"
+        } for item in data]
+    except requests.exceptions.RequestException as e:
+        print(f"[❌] Exception while fetching latest music: {e}")
+        return []
