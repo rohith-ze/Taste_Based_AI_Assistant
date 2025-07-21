@@ -1,0 +1,2511 @@
+[
+    {
+        "name": "Taylor Swift",
+        "entity_id": "4BBEF799-A0C4-4110-AB01-39216993C312",
+        "image_url": "https://images.qloo.com/i/4BBEF799-A0C4-4110-AB01-39216993C312-420x-auto.jpg",
+        "genres": [
+            "Country",
+            "Singer & Songwriter",
+            "Acoustic"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Dedicated",
+            "Engaged"
+        ],
+        "styles": [
+            "Energetic",
+            "Engaging",
+            "Expressive",
+            "Dynamic",
+            "Country Pop",
+            "Synth-Pop",
+            "Indie Folk",
+            "Electropop",
+            "Alternative Rock"
+        ],
+        "characteristics": [
+            "Versatile",
+            "Narrative",
+            "Emotional",
+            "Innovative",
+            "Charismatic"
+        ],
+        "influences": [
+            "Contemporary Pop",
+            "Country Pop",
+            "Indie Pop"
+        ],
+        "influenced_by_artists": [
+            "Shania Twain",
+            "Dolly Parton",
+            "Joni Mitchell",
+            "Stevie Nicks"
+        ],
+        "instruments": [
+            "Guitar",
+            "Piano"
+        ],
+        "themes": [
+            "Love",
+            "Heartbreak",
+            "Self-Discovery",
+            "Empowerment",
+            "Fame"
+        ],
+        "subgenres": [
+            "Synth-pop",
+            "Electropop",
+            "Indie Folk",
+            "Alternative Rock"
+        ]
+    },
+    {
+        "name": "Klaxons",
+        "entity_id": "D5286D9E-69E9-4A24-9006-A37E32EDA482",
+        "image_url": "https://images.qloo.com/i/D5286D9E-69E9-4A24-9006-A37E32EDA482-420x-auto.jpg",
+        "genres": [
+            "Electronic",
+            "British",
+            "New Rave",
+            "Indie",
+            "Indie Rock"
+        ],
+        "audiences": [
+            "Energetic",
+            "Youthful",
+            "Eclectic",
+            "Open-Minded"
+        ],
+        "styles": [
+            "Energetic",
+            "Vibrant",
+            "Dynamic",
+            "Engaging",
+            "New Rave",
+            "Psychedelic Indie",
+            "Electronic Rock",
+            "Dance-Punk",
+            "Post-Punk Revival"
+        ],
+        "characteristics": [
+            "Energetic",
+            "Innovative",
+            "Eclectic",
+            "Psychedelic",
+            "Danceable"
+        ],
+        "influences": [
+            "New Rave",
+            "Indie Electronic",
+            "Dance-Punk"
+        ],
+        "influenced_by_artists": [
+            "New Order",
+            "The Cure",
+            "David Bowie",
+            "Kraftwerk"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Bass Guitar",
+            "Synthesizer",
+            "Drums"
+        ],
+        "themes": [
+            "Science Fiction",
+            "Mythology",
+            "Existentialism",
+            "Technology"
+        ],
+        "subgenres": [
+            "Electronic Rock",
+            "Dance-Punk",
+            "Post-Punk Revival"
+        ]
+    },
+    {
+        "name": "Sex Pistols",
+        "entity_id": "C35311D4-28BE-4B5B-8C1C-B62336D19305",
+        "image_url": "https://images.qloo.com/i/C35311D4-28BE-4B5B-8C1C-B62336D19305-420x-auto.jpg",
+        "genres": [
+            "Punk",
+            "British",
+            "Punk Rock",
+            "Rock",
+            "70s"
+        ],
+        "audiences": [
+            "Rebellious",
+            "Passionate",
+            "Anti-Establishment",
+            "Youthful"
+        ],
+        "styles": [
+            "Energetic",
+            "Chaotic",
+            "Provocative",
+            "Raw",
+            "British Punk Rock",
+            "Anarcho-Punk",
+            "Garage Punk",
+            "Hardcore Punk",
+            "Street Punk"
+        ],
+        "characteristics": [
+            "Rebellious",
+            "Aggressive",
+            "Provocative",
+            "Raw",
+            "Energetic"
+        ],
+        "influences": [
+            "Punk Rock",
+            "Hardcore Punk",
+            "Alternative Rock",
+            "Post-Punk"
+        ],
+        "influenced_by_artists": [
+            "The Stooges",
+            "The New York Dolls",
+            "Glam Rock",
+            "Garage Rock"
+        ],
+        "instruments": [
+            "Vocals",
+            "Electric Guitar",
+            "Bass Guitar",
+            "Drums"
+        ],
+        "themes": [
+            "Anarchy",
+            "Anti-Establishment",
+            "Rebellion",
+            "Social Critique",
+            "Youth Disillusionment"
+        ],
+        "subgenres": [
+            "Hardcore Punk",
+            "Garage Punk"
+        ]
+    },
+    {
+        "name": "Paul Simon",
+        "entity_id": "53A5258E-8701-4DD2-9646-6F162F170CBA",
+        "image_url": "https://images.qloo.com/i/53A5258E-8701-4DD2-9646-6F162F170CBA-420x-auto.jpg",
+        "genres": [
+            "Acoustic",
+            "Classic Rock",
+            "Singer & Songwriter",
+            "Folk",
+            "Rock"
+        ],
+        "audiences": [
+            "Loyal",
+            "Thoughtful",
+            "Diverse",
+            "Appreciative"
+        ],
+        "styles": [
+            "Intimate",
+            "Expressive",
+            "Engaging",
+            "Acoustic",
+            "Folk Rock",
+            "Worldbeat",
+            "Singer-Songwriter",
+            "Soft Rock",
+            "Eclectic"
+        ],
+        "characteristics": [
+            "Poetic",
+            "Innovative",
+            "Melodic",
+            "Reflective",
+            "Versatile"
+        ],
+        "influences": [
+            "Worldbeat",
+            "Folk Rock",
+            "Singer-Songwriter"
+        ],
+        "influenced_by_artists": [
+            "Bob Dylan",
+            "The Beatles",
+            "Woody Guthrie"
+        ],
+        "instruments": [
+            "Guitar",
+            "Piano",
+            "Vocals"
+        ],
+        "themes": [
+            "Love",
+            "Social Issues",
+            "Personal Reflection",
+            "Storytelling",
+            "Cultural Identity"
+        ],
+        "subgenres": [
+            "World Music",
+            "Soft Rock"
+        ]
+    },
+    {
+        "name": "James Taylor",
+        "entity_id": "AED2E06A-DEB6-4586-BD9B-B0F6A4C3C17E",
+        "image_url": "https://images.qloo.com/i/AED2E06A-DEB6-4586-BD9B-B0F6A4C3C17E-420x-auto.jpg",
+        "genres": [
+            "Classic Rock",
+            "Rock",
+            "Singer & Songwriter",
+            "Acoustic",
+            "Folk"
+        ],
+        "audiences": [
+            "Loyal",
+            "Reflective",
+            "Mellow",
+            "Appreciative"
+        ],
+        "styles": [
+            "Intimate",
+            "Relaxed",
+            "Expressive",
+            "Folk Rock",
+            "Soft Rock",
+            "Singer-Songwriter",
+            "Acoustic Ballad",
+            "Adult Contemporary"
+        ],
+        "characteristics": [
+            "Mellow",
+            "Introspective",
+            "Soulful",
+            "Melodic",
+            "Warm"
+        ],
+        "influences": [
+            "Singer-Songwriter",
+            "Soft Rock",
+            "Adult Contemporary"
+        ],
+        "influenced_by_artists": [
+            "Bob Dylan",
+            "Woody Guthrie",
+            "The Beatles"
+        ],
+        "instruments": [
+            "Guitar",
+            "Piano",
+            "Vocals"
+        ],
+        "themes": [
+            "Love",
+            "Personal Struggle",
+            "Redemption",
+            "Nature",
+            "Friendship"
+        ],
+        "subgenres": [
+            "Pop",
+            "Country"
+        ]
+    },
+    {
+        "name": "Kool & The Gang",
+        "entity_id": "E19D9FFB-CA6A-405D-8AA2-A93DEC95B037",
+        "image_url": "https://images.qloo.com/i/E19D9FFB-CA6A-405D-8AA2-A93DEC95B037-420x-auto.jpg",
+        "genres": [
+            "Funk",
+            "80s",
+            "Soul",
+            "Disco",
+            "70s"
+        ],
+        "audiences": [
+            "Energetic",
+            "Loyal",
+            "Diverse",
+            "Dance-Loving"
+        ],
+        "styles": [
+            "Energetic",
+            "Engaging",
+            "Dynamic",
+            "Showy",
+            "Jazz-Funk",
+            "Post-Disco",
+            "Funk-Soul",
+            "Dance-Funk",
+            "R&B-Funk"
+        ],
+        "characteristics": [
+            "Funky",
+            "Soulful",
+            "Energetic",
+            "Groovy",
+            "Danceable"
+        ],
+        "influences": [
+            "Funk",
+            "Dance-Pop",
+            "Hip-Hop",
+            "Contemporary R&B"
+        ],
+        "influenced_by_artists": [
+            "James Brown",
+            "Sly and the Family Stone",
+            "The Meters",
+            "George Clinton"
+        ],
+        "instruments": [
+            "Bass Guitar",
+            "Saxophone",
+            "Trumpet",
+            "Trombone",
+            "Drums",
+            "Keyboards",
+            "Guitar"
+        ],
+        "themes": [
+            "Celebration",
+            "Love",
+            "Party",
+            "Unity",
+            "Dance"
+        ],
+        "subgenres": [
+            "Jazz Funk",
+            "Post-Disco",
+            "Dance-Pop"
+        ]
+    },
+    {
+        "name": "D12",
+        "entity_id": "A0637889-AD9F-4082-8282-33D8B8CB8AEF",
+        "image_url": "https://images.qloo.com/i/A0637889-AD9F-4082-8282-33D8B8CB8AEF-420x-auto.jpg",
+        "genres": [
+            "Hip - Hop",
+            "Rap",
+            "Gangsta Rap"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Diverse",
+            "Energetic"
+        ],
+        "styles": [
+            "Energetic",
+            "Aggressive",
+            "Dynamic",
+            "Engaging",
+            "Midwest Hardcore Rap",
+            "Horrorcore",
+            "Dark Humor Rap",
+            "Group Dynamic Rap",
+            "Controversial Lyricism"
+        ],
+        "characteristics": [
+            "Dark",
+            "Controversial",
+            "Humorous",
+            "Energetic",
+            "Edgy"
+        ],
+        "influences": [
+            "Horrorcore",
+            "Gangsta Rap",
+            "Midwest Hip Hop"
+        ],
+        "influenced_by_artists": [
+            "N.W.A",
+            "Dr. Dre",
+            "Eminem's Solo Work",
+            "Bone Thugs-N-Harmony"
+        ],
+        "instruments": [
+            "Turntables",
+            "Drum Machines",
+            "Synthesizers"
+        ],
+        "themes": [
+            "Violence",
+            "Dark Humor",
+            "Urban Life",
+            "Friendship",
+            "Struggle"
+        ],
+        "subgenres": [
+            "Gangsta Rap",
+            "Horrorcore"
+        ]
+    },
+    {
+        "name": "Madlib",
+        "entity_id": "B27F9545-B884-4AA8-9906-786DDFB13306",
+        "image_url": "https://images.qloo.com/i/B27F9545-B884-4AA8-9906-786DDFB13306-420x-auto.jpg",
+        "genres": [
+            "Funk",
+            "Rap",
+            "Hip - Hop",
+            "Jazz"
+        ],
+        "audiences": [
+            "Dedicated",
+            "Eclectic",
+            "Underground",
+            "Loyal",
+            "Passionate"
+        ],
+        "styles": [
+            "Energetic",
+            "Improvisational",
+            "Dynamic",
+            "Engaging",
+            "Sample-Based",
+            "Jazz-Infused",
+            "Lo-Fi",
+            "Experimental Hip Hop",
+            "Psychedelic"
+        ],
+        "characteristics": [
+            "Innovative",
+            "Eclectic",
+            "Experimental",
+            "Versatile",
+            "Creative"
+        ],
+        "influences": [
+            "Alternative Hip Hop",
+            "Lo-Fi Hip Hop",
+            "Experimental Hip Hop",
+            "Jazz Rap"
+        ],
+        "influenced_by_artists": [
+            "J Dilla",
+            "DJ Premier",
+            "Pete Rock",
+            "Roy Ayers",
+            "Herbie Hancock"
+        ],
+        "instruments": [
+            "Turntables",
+            "Drum Machine",
+            "Sampler",
+            "Keyboards",
+            "Bass Guitar"
+        ],
+        "themes": [
+            "Social Commentary",
+            "Abstract Concepts",
+            "Personal Struggles",
+            "Street Life",
+            "Philosophy"
+        ],
+        "subgenres": [
+            "Trip Hop",
+            "Instrumental Hip Hop",
+            "Experimental Hip Hop"
+        ]
+    },
+    {
+        "name": "SOHN",
+        "entity_id": "A7BFCF80-85C2-4C3D-A385-C29DF718C82C",
+        "image_url": "https://images.qloo.com/i/A7BFCF80-85C2-4C3D-A385-C29DF718C82C-420x-auto.jpg",
+        "genres": [
+            "Electropop",
+            "Electronic",
+            "Indie",
+            "Ambient"
+        ],
+        "audiences": [
+            "Dedicated",
+            "Introspective",
+            "Loyal",
+            "Passionate"
+        ],
+        "styles": [
+            "Intimate",
+            "Expressive",
+            "Minimalist",
+            "Downtempo",
+            "Alternative R&B",
+            "Indie Electronic",
+            "Synthpop",
+            "Trip Hop"
+        ],
+        "characteristics": [
+            "Atmospheric",
+            "Emotive",
+            "Soulful",
+            "Intricate",
+            "Moody"
+        ],
+        "influences": [
+            "Alternative R&B",
+            "Indie Electronic",
+            "Downtempo"
+        ],
+        "influenced_by_artists": [
+            "Radiohead",
+            "Massive Attack",
+            "Portishead",
+            "Brian Eno"
+        ],
+        "instruments": [
+            "Synthesizer",
+            "Piano",
+            "Drum Machine",
+            "Sampler"
+        ],
+        "themes": [
+            "Introspection",
+            "Emotional Struggle",
+            "Love",
+            "Loss",
+            "Self-Reflection"
+        ],
+        "subgenres": [
+            "Downtempo",
+            "Synthpop",
+            "Trip Hop"
+        ]
+    },
+    {
+        "name": "Robert Palmer",
+        "entity_id": "7722BFFD-CA2F-46D8-AE46-4BC342EDD369",
+        "image_url": "https://images.qloo.com/i/7722BFFD-CA2F-46D8-AE46-4BC342EDD369-420x-auto.jpg",
+        "genres": [
+            "British",
+            "Classic Rock",
+            "80s",
+            "Rock"
+        ],
+        "audiences": [
+            "Stylish",
+            "Sophisticated",
+            "Eclectic",
+            "Passionate"
+        ],
+        "styles": [
+            "Charismatic",
+            "Energetic",
+            "Stylish",
+            "Blue-eyed Soul",
+            "Funk-infused Rock",
+            "Sophisticated Pop",
+            "New Wave Rock",
+            "Smooth Jazz Fusion"
+        ],
+        "characteristics": [
+            "Distinctive",
+            "Sophisticated",
+            "Eclectic",
+            "Smooth",
+            "Stylish"
+        ],
+        "influences": [
+            "Blue-eyed Soul",
+            "Pop Rock",
+            "Funk Rock"
+        ],
+        "influenced_by_artists": [
+            "Otis Redding",
+            "James Brown",
+            "Marvin Gaye",
+            "Sly Stone"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Keyboards"
+        ],
+        "themes": [
+            "Love",
+            "Desire",
+            "Relationships",
+            "Heartache",
+            "Romance"
+        ],
+        "subgenres": [
+            "New Wave",
+            "Funk",
+            "Jazz",
+            "Blues"
+        ]
+    },
+    {
+        "name": "Maria Taylor",
+        "entity_id": "098E1811-07CB-4D4A-90CE-E1B96D1A01DC",
+        "image_url": "https://images.qloo.com/i/098E1811-07CB-4D4A-90CE-E1B96D1A01DC-420x-auto.jpg",
+        "genres": [
+            "Folk",
+            "Singer & Songwriter",
+            "Indie"
+        ],
+        "audiences": [
+            "Loyal",
+            "Introspective",
+            "Passionate",
+            "Supportive"
+        ],
+        "styles": [
+            "Intimate",
+            "Expressive",
+            "Calm",
+            "Indie Folk",
+            "Dream Pop",
+            "Acoustic Rock",
+            "Singer-Songwriter",
+            "Emotive"
+        ],
+        "characteristics": [
+            "Introspective",
+            "Emotive",
+            "Melodic",
+            "Acoustic",
+            "Soulful"
+        ],
+        "influences": [
+            "Indie Folk",
+            "Singer-Songwriter",
+            "Alternative Rock"
+        ],
+        "influenced_by_artists": [
+            "Joni Mitchell",
+            "Neil Young",
+            "Cat Power",
+            "Elliott Smith"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Piano"
+        ],
+        "themes": [
+            "Love",
+            "Loss",
+            "Introspection",
+            "Nature",
+            "Emotional Healing"
+        ],
+        "subgenres": [
+            "Alternative",
+            "Acoustic"
+        ]
+    },
+    {
+        "name": "Evidence",
+        "entity_id": "BAC3991B-FEFD-4D52-A894-91F1CC601014",
+        "image_url": "https://images.qloo.com/i/BAC3991B-FEFD-4D52-A894-91F1CC601014-420x-auto.jpg",
+        "genres": [
+            "Hip - Hop",
+            "Rap",
+            "Underground Hip Hop"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Thoughtful",
+            "Underground",
+            "Dedicated"
+        ],
+        "styles": [
+            "Energetic",
+            "Engaging",
+            "Authentic",
+            "Boom Bap",
+            "Conscious",
+            "Lo-Fi",
+            "Sample-Based",
+            "West Coast"
+        ],
+        "characteristics": [
+            "Lyrical",
+            "Thoughtful",
+            "Underground",
+            "Skilled",
+            "Innovative"
+        ],
+        "influences": [
+            "Underground Hip Hop",
+            "Alternative Hip Hop"
+        ],
+        "influenced_by_artists": [
+            "DJ Premier",
+            "Pete Rock",
+            "Nas",
+            "Wu-Tang Clan"
+        ],
+        "instruments": [
+            "Turntables",
+            "Sampler",
+            "Drum Machine"
+        ],
+        "themes": [
+            "Personal Struggle",
+            "Life Reflections",
+            "Hip Hop Culture",
+            "Social Issues",
+            "Introspection"
+        ],
+        "subgenres": [
+            "Underground Hip Hop",
+            "Alternative Hip Hop"
+        ]
+    },
+    {
+        "name": "Kaya Project",
+        "entity_id": "9057F2F0-45B3-4FE9-AC39-C2E9321191CB",
+        "image_url": "https://images.qloo.com/i/9057F2F0-45B3-4FE9-AC39-C2E9321191CB-420x-auto.jpg",
+        "genres": [
+            "Downtempo",
+            "Chillout",
+            "Electronic",
+            "Ambient",
+            "Psychill"
+        ],
+        "audiences": [
+            "Open-Minded",
+            "Eclectic",
+            "Chill",
+            "World Music Enthusiasts"
+        ],
+        "styles": [
+            "Immersive",
+            "Dynamic",
+            "Organic",
+            "World Fusion",
+            "Ambient Downtempo",
+            "Ethnic Electronica",
+            "Organic Chillout",
+            "Global Rhythmic"
+        ],
+        "characteristics": [
+            "Eclectic",
+            "Atmospheric",
+            "Organic",
+            "Melodic",
+            "Relaxing"
+        ],
+        "influences": [
+            "World Fusion",
+            "Ambient Electronica",
+            "Downtempo"
+        ],
+        "influenced_by_artists": [
+            "World Music Traditions",
+            "Electronic Music Pioneers"
+        ],
+        "instruments": [
+            "Ethnic Percussion",
+            "Flute",
+            "Didgeridoo",
+            "Synthesizers",
+            "Drum Machines"
+        ],
+        "themes": [
+            "Nature",
+            "Spirituality",
+            "Cultural Fusion"
+        ],
+        "subgenres": [
+            "Ethnic Fusion",
+            "Chillout",
+            "Trip Hop"
+        ]
+    },
+    {
+        "name": "Teyana Taylor",
+        "entity_id": "2C0A9A03-E912-4239-BD2A-BA657868E6D9",
+        "image_url": "https://images.qloo.com/i/2C0A9A03-E912-4239-BD2A-BA657868E6D9-420x-auto.jpg",
+        "genres": [
+            "Rhythm & Blues",
+            "Hip - Hop"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Diverse",
+            "Supportive"
+        ],
+        "styles": [
+            "Energetic",
+            "Expressive",
+            "Choreographed",
+            "Engaging",
+            "Neo-Soul",
+            "Trap Soul",
+            "Contemporary R&B",
+            "Hip Hop Soul",
+            "Urban Contemporary"
+        ],
+        "characteristics": [
+            "Versatile",
+            "Dynamic",
+            "Soulful",
+            "Expressive",
+            "Energetic"
+        ],
+        "influences": [
+            "Contemporary R&B",
+            "Trap Soul",
+            "Hip Hop"
+        ],
+        "influenced_by_artists": [
+            "Aaliyah",
+            "Mary J. Blige",
+            "Lauryn Hill",
+            "Beyoncé"
+        ],
+        "instruments": [
+            "Vocals"
+        ],
+        "themes": [
+            "Love",
+            "Empowerment",
+            "Relationships",
+            "Self-Confidence",
+            "Personal Growth"
+        ],
+        "subgenres": [
+            "Pop",
+            "Trap Soul"
+        ]
+    },
+    {
+        "name": "Andy Timmons",
+        "entity_id": "C92B7AFE-73AC-4EB7-9610-86B5D8B9BFF7",
+        "image_url": "https://images.qloo.com/i/C92B7AFE-73AC-4EB7-9610-86B5D8B9BFF7-420x-auto.jpg",
+        "genres": [
+            "Rock",
+            "Guitar",
+            "Instrumental",
+            "Instrumental Rock"
+        ],
+        "audiences": [
+            "Dedicated",
+            "Passionate",
+            "Guitar Enthusiasts",
+            "Loyal"
+        ],
+        "styles": [
+            "Energetic",
+            "Engaging",
+            "Technical",
+            "Expressive",
+            "Melodic Instrumental Rock",
+            "Blues-Infused Rock",
+            "Technical Guitar Fusion",
+            "Expressive Guitar Solos",
+            "Dynamic Rock Instrumentals"
+        ],
+        "characteristics": [
+            "Melodic",
+            "Expressive",
+            "Technical",
+            "Versatile",
+            "Skilled"
+        ],
+        "influences": [
+            "Instrumental Rock",
+            "Blues Rock",
+            "Fusion"
+        ],
+        "influenced_by_artists": [
+            "Jimi Hendrix",
+            "Jeff Beck",
+            "Eric Clapton",
+            "Steve Vai"
+        ],
+        "instruments": [
+            "Guitar"
+        ],
+        "themes": [
+            "Emotion",
+            "Personal Struggle",
+            "Love",
+            "Reflection"
+        ],
+        "subgenres": [
+            "Hard Rock",
+            "Fusion"
+        ]
+    },
+    {
+        "name": "Otis Taylor",
+        "entity_id": "1FD057A7-1018-4484-B50B-D56FC2482B5F",
+        "image_url": "https://images.qloo.com/i/1FD057A7-1018-4484-B50B-D56FC2482B5F-420x-auto.jpg",
+        "genres": [
+            "Rock",
+            "Folk",
+            "Singer & Songwriter",
+            "Blues",
+            "Acoustic"
+        ],
+        "audiences": [
+            "Passionate",
+            "Loyal",
+            "Thoughtful",
+            "Engaged"
+        ],
+        "styles": [
+            "Intense",
+            "Engaging",
+            "Raw",
+            "Storytelling",
+            "Electric Blues",
+            "Folk Blues",
+            "Roots Blues",
+            "Soulful Blues",
+            "Contemporary Blues"
+        ],
+        "characteristics": [
+            "Emotive",
+            "Innovative",
+            "Raw",
+            "Soulful",
+            "Reflective"
+        ],
+        "influences": [
+            "Contemporary Blues",
+            "Roots Music",
+            "Blues Rock"
+        ],
+        "influenced_by_artists": [
+            "Muddy Waters",
+            "John Lee Hooker",
+            "Howlin' Wolf",
+            "Lead Belly"
+        ],
+        "instruments": [
+            "Guitar",
+            "Electric Banjo",
+            "Vocals"
+        ],
+        "themes": [
+            "Social Justice",
+            "History",
+            "Racism",
+            "Personal Struggle",
+            "Spirituality"
+        ],
+        "subgenres": [
+            "Jazz",
+            "Soul",
+            "Roots Music"
+        ]
+    },
+    {
+        "name": "Taylor Dayne",
+        "entity_id": "46120F48-AC5D-4062-9570-9F1C4B7097B6",
+        "image_url": "https://images.qloo.com/i/46120F48-AC5D-4062-9570-9F1C4B7097B6-420x-auto.jpg",
+        "genres": [
+            "American",
+            "80s",
+            "Dance"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Energetic"
+        ],
+        "styles": [
+            "Dynamic",
+            "Expressive",
+            "Energetic",
+            "Dance-Pop",
+            "Hi-NRG",
+            "Freestyle",
+            "Adult Contemporary",
+            "Synthpop"
+        ],
+        "characteristics": [
+            "Powerful",
+            "Energetic",
+            "Dynamic",
+            "Soulful",
+            "Versatile"
+        ],
+        "influences": [
+            "Dance-Pop",
+            "Adult Contemporary"
+        ],
+        "influenced_by_artists": [
+            "Aretha Franklin",
+            "Diana Ross",
+            "Donna Summer"
+        ],
+        "instruments": [
+            "Vocals"
+        ],
+        "themes": [
+            "Love",
+            "Heartbreak",
+            "Empowerment",
+            "Romance"
+        ],
+        "subgenres": [
+            "Freestyle",
+            "Hi-NRG",
+            "Synthpop"
+        ]
+    },
+    {
+        "name": "Trina",
+        "entity_id": "1E31ADAD-C30D-4062-9C74-108DD66D1772",
+        "image_url": "https://images.qloo.com/i/1E31ADAD-C30D-4062-9C74-108DD66D1772-420x-auto.jpg",
+        "genres": [
+            "Hip - Hop",
+            "Rhythm & Blues",
+            "Rap"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Empowered",
+            "Diverse"
+        ],
+        "styles": [
+            "Energetic",
+            "Commanding",
+            "Confident",
+            "Southern Hip Hop",
+            "Dirty South Rap",
+            "Female Empowerment Rap",
+            "Explicit Lyricism",
+            "Streetwise Hip Hop"
+        ],
+        "characteristics": [
+            "Confident",
+            "Assertive",
+            "Bold",
+            "Empowering",
+            "Streetwise"
+        ],
+        "influences": [
+            "Southern Hip Hop",
+            "Female Rap"
+        ],
+        "influenced_by_artists": [
+            "Missy Elliott",
+            "Lil' Kim",
+            "Queen Latifah"
+        ],
+        "instruments": [
+            "Vocals"
+        ],
+        "themes": [
+            "Female Empowerment",
+            "Sexuality",
+            "Street Life",
+            "Relationships",
+            "Independence"
+        ],
+        "subgenres": [
+            "Southern Hip Hop",
+            "Dirty South"
+        ]
+    },
+    {
+        "name": "The Invisible",
+        "entity_id": "DE30DE97-8365-41D1-B486-9AA7A882D08C",
+        "image_url": "https://images.qloo.com/i/DE30DE97-8365-41D1-B486-9AA7A882D08C-420x-auto.jpg",
+        "genres": [
+            "Experimental",
+            "Indie Rock",
+            "Alternative Rock",
+            "New Wave"
+        ],
+        "audiences": [
+            "Eclectic",
+            "Open-Minded",
+            "Artistic",
+            "Intellectual"
+        ],
+        "styles": [
+            "Intimate",
+            "Dynamic",
+            "Expressive",
+            "Indie Rock",
+            "Art Rock",
+            "Experimental Rock",
+            "Electronic Fusion",
+            "Atmospheric"
+        ],
+        "characteristics": [
+            "Experimental",
+            "Innovative",
+            "Atmospheric",
+            "Artistic",
+            "Eclectic"
+        ],
+        "influences": [
+            "Indie Rock",
+            "Art Rock",
+            "Experimental Rock"
+        ],
+        "influenced_by_artists": [
+            "Radiohead",
+            "Portishead",
+            "Massive Attack"
+        ],
+        "instruments": [
+            "Guitar",
+            "Drums",
+            "Bass",
+            "Synthesizers"
+        ],
+        "themes": [
+            "Urban Life",
+            "Relationships",
+            "Identity",
+            "Introspection"
+        ],
+        "subgenres": [
+            "Experimental Rock",
+            "Electronic"
+        ]
+    },
+    {
+        "name": "The James Taylor Quartet",
+        "entity_id": "00C66743-F172-4359-9F4A-F236111A66BF",
+        "image_url": "https://images.qloo.com/i/00C66743-F172-4359-9F4A-F236111A66BF-420x-auto.jpg",
+        "genres": [
+            "Jazz",
+            "Funk",
+            "Organ",
+            "Groove"
+        ],
+        "audiences": [
+            "Dedicated",
+            "Passionate",
+            "Groove-Loving",
+            "Jazz Enthusiasts"
+        ],
+        "styles": [
+            "Energetic",
+            "Lively",
+            "Groove-Oriented",
+            "Hammond-Driven",
+            "Jazz-Funk",
+            "Acid Jazz",
+            "Soul Jazz",
+            "Instrumental"
+        ],
+        "characteristics": [
+            "Energetic",
+            "Groovy",
+            "Instrumental",
+            "Funky",
+            "Soulful"
+        ],
+        "influences": [
+            "Acid Jazz",
+            "Jazz-Funk",
+            "Nu Jazz"
+        ],
+        "influenced_by_artists": [
+            "Jimmy Smith",
+            "Herbie Hancock",
+            "Booker T. & the M.G.'s"
+        ],
+        "instruments": [
+            "Hammond Organ",
+            "Keyboards",
+            "Drums",
+            "Bass Guitar",
+            "Guitar"
+        ],
+        "themes": [],
+        "subgenres": [
+            "Jazz",
+            "Instrumental"
+        ]
+    },
+    {
+        "name": "Jack Johnson",
+        "entity_id": "DDAC730A-830D-477A-A702-567C6D857284",
+        "image_url": "https://images.qloo.com/i/DDAC730A-830D-477A-A702-567C6D857284-420x-auto.jpg",
+        "genres": [
+            "Chill",
+            "Singer & Songwriter",
+            "Alternative Rock",
+            "Rock",
+            "Acoustic"
+        ],
+        "audiences": [
+            "Laid-Back",
+            "Environmentally Conscious",
+            "Casual",
+            "Relaxed"
+        ],
+        "styles": [
+            "Intimate",
+            "Relaxed",
+            "Casual",
+            "Acoustic Rock",
+            "Folk Rock",
+            "Soft Rock",
+            "Singer-Songwriter",
+            "Environmental Folk"
+        ],
+        "characteristics": [
+            "Mellow",
+            "Laid-Back",
+            "Introspective",
+            "Warm",
+            "Acoustic"
+        ],
+        "influences": [
+            "Acoustic Rock",
+            "Folk Rock",
+            "Soft Rock"
+        ],
+        "influenced_by_artists": [
+            "Bob Dylan",
+            "Neil Young",
+            "The Beatles",
+            "J.J. Cale"
+        ],
+        "instruments": [
+            "Guitar",
+            "Vocals",
+            "Drums"
+        ],
+        "themes": [
+            "Love",
+            "Nature",
+            "Social Consciousness",
+            "Peace",
+            "Everyday Life"
+        ],
+        "subgenres": [
+            "Pop Rock",
+            "Singer-Songwriter"
+        ]
+    },
+    {
+        "name": "Ed Sheeran",
+        "entity_id": "058B79A3-49F5-4927-9AB6-DE713C706796",
+        "image_url": "https://images.qloo.com/i/058B79A3-49F5-4927-9AB6-DE713C706796-420x-auto.jpg",
+        "genres": [
+            "Easy Listening",
+            "Singer & Songwriter",
+            "Acoustic",
+            "British"
+        ],
+        "audiences": [
+            "Loyal",
+            "Diverse",
+            "Passionate",
+            "Supportive"
+        ],
+        "styles": [
+            "Intimate",
+            "Engaging",
+            "Acoustic",
+            "Loop-based",
+            "Personal",
+            "Acoustic Folk Pop",
+            "Loop-based Singer-Songwriter",
+            "Melodic Soft Rock",
+            "Emotive Pop Balladry",
+            "Intimate Storytelling"
+        ],
+        "characteristics": [
+            "Melodic",
+            "Emotive",
+            "Versatile",
+            "Acoustic",
+            "Catchy"
+        ],
+        "influences": [
+            "Pop",
+            "Folk Pop",
+            "Acoustic"
+        ],
+        "influenced_by_artists": [
+            "Damien Rice",
+            "The Beatles",
+            "Bob Dylan",
+            "Eminem"
+        ],
+        "instruments": [
+            "Guitar",
+            "Vocals",
+            "Loop Pedal"
+        ],
+        "themes": [
+            "Love",
+            "Relationships",
+            "Heartbreak",
+            "Personal Growth",
+            "Life Experiences"
+        ],
+        "subgenres": [
+            "Singer-Songwriter",
+            "Soft Rock",
+            "Hip Hop",
+            "R&B"
+        ]
+    },
+    {
+        "name": "Kasabian",
+        "entity_id": "A3B4BD45-C548-43B1-91CB-6DD346F4DD6E",
+        "image_url": "https://images.qloo.com/i/A3B4BD45-C548-43B1-91CB-6DD346F4DD6E-420x-auto.jpg",
+        "genres": [
+            "British",
+            "Indie",
+            "Alternative Rock",
+            "Indie Rock",
+            "Rock"
+        ],
+        "audiences": [
+            "Loyal",
+            "Energetic",
+            "Passionate",
+            "Diverse"
+        ],
+        "styles": [
+            "Energetic",
+            "Dynamic",
+            "Engaging",
+            "Theatrical",
+            "Psychedelic Indie Rock",
+            "Electronic-Infused Rock",
+            "Britpop Revival",
+            "Space Rock",
+            "Alternative Dance"
+        ],
+        "characteristics": [
+            "Energetic",
+            "Innovative",
+            "Psychedelic",
+            "Melodic",
+            "Dynamic"
+        ],
+        "influences": [
+            "Alternative Rock",
+            "Indie Rock",
+            "Electronic Rock"
+        ],
+        "influenced_by_artists": [
+            "The Stone Roses",
+            "Primal Scream",
+            "The Beatles",
+            "The Rolling Stones"
+        ],
+        "instruments": [
+            "Guitar",
+            "Bass Guitar",
+            "Drums",
+            "Synthesizer",
+            "Vocals"
+        ],
+        "themes": [
+            "Rebellion",
+            "Social Commentary",
+            "Personal Struggles",
+            "Celebration",
+            "Urban Life"
+        ],
+        "subgenres": [
+            "Electronic Rock",
+            "Psychedelic Rock",
+            "Space Rock"
+        ]
+    },
+    {
+        "name": "The Chemical Brothers",
+        "entity_id": "9BD5D885-C48A-4BD6-82BD-2B02CDA7A56E",
+        "image_url": "https://images.qloo.com/i/9BD5D885-C48A-4BD6-82BD-2B02CDA7A56E-420x-auto.jpg",
+        "genres": [
+            "Dance",
+            "Big Beat",
+            "Electronica",
+            "Techno",
+            "Electronic"
+        ],
+        "audiences": [
+            "Energetic",
+            "Dedicated",
+            "Eclectic",
+            "Dance-Oriented"
+        ],
+        "styles": [
+            "Energetic",
+            "Immersive",
+            "Visual",
+            "Dynamic",
+            "Big Beat",
+            "Psychedelic Techno",
+            "Breakbeat-Infused",
+            "Sample-Heavy",
+            "Dancefloor-Oriented"
+        ],
+        "characteristics": [
+            "Innovative",
+            "Energetic",
+            "Pioneering",
+            "Psychedelic",
+            "Dynamic"
+        ],
+        "influences": [
+            "Big Beat",
+            "Electronic Dance Music",
+            "Breakbeat"
+        ],
+        "influenced_by_artists": [
+            "Kraftwerk",
+            "Hip Hop",
+            "Techno",
+            "House Music"
+        ],
+        "instruments": [
+            "Synthesizers",
+            "Drum Machines",
+            "Samplers",
+            "Turntables"
+        ],
+        "themes": [
+            "Technology",
+            "Urban Life",
+            "Psychedelia",
+            "Social Commentary"
+        ],
+        "subgenres": [
+            "House",
+            "Breakbeat",
+            "Trip Hop"
+        ]
+    },
+    {
+        "name": "Frank Ocean",
+        "entity_id": "2B134C93-39EB-4A08-A72D-5F8F1167FDAA",
+        "image_url": "https://images.qloo.com/i/2B134C93-39EB-4A08-A72D-5F8F1167FDAA-420x-auto.jpg",
+        "genres": [
+            "Rhythm & Blues",
+            "Hip - Hop",
+            "Soul"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Diverse",
+            "Thoughtful"
+        ],
+        "styles": [
+            "Intimate",
+            "Expressive",
+            "Minimalist",
+            "Alternative R&B",
+            "Neo Soul",
+            "Experimental Hip Hop",
+            "Contemporary R&B",
+            "Emotive Soul"
+        ],
+        "characteristics": [
+            "Innovative",
+            "Introspective",
+            "Soulful",
+            "Emotive",
+            "Genre-Defying"
+        ],
+        "influences": [
+            "Alternative R&B",
+            "Neo Soul",
+            "Contemporary R&B"
+        ],
+        "influenced_by_artists": [
+            "Prince",
+            "Stevie Wonder",
+            "Kanye West",
+            "J Dilla",
+            "The Beatles"
+        ],
+        "instruments": [
+            "Vocals",
+            "Piano",
+            "Guitar"
+        ],
+        "themes": [
+            "Love",
+            "Identity",
+            "Heartbreak",
+            "Self-Discovery",
+            "Social Commentary"
+        ],
+        "subgenres": [
+            "Hip Hop",
+            "Soul",
+            "Pop"
+        ]
+    },
+    {
+        "name": "Editors",
+        "entity_id": "F2DD2934-A15D-4C81-B24B-6310EDC564D7",
+        "image_url": "https://images.qloo.com/i/F2DD2934-A15D-4C81-B24B-6310EDC564D7-420x-auto.jpg",
+        "genres": [
+            "Alternative Rock",
+            "Indie Rock",
+            "British",
+            "Indie"
+        ],
+        "audiences": [
+            "Dedicated",
+            "Passionate",
+            "Loyal",
+            "Introspective"
+        ],
+        "styles": [
+            "Dynamic",
+            "Energetic",
+            "Engaging",
+            "Moody",
+            "Post-Punk Revival",
+            "Gothic Rock",
+            "Synth-Driven Indie",
+            "Melancholic Alternative",
+            "Cinematic Rock"
+        ],
+        "characteristics": [
+            "Dark",
+            "Atmospheric",
+            "Emotive",
+            "Brooding",
+            "Cinematic"
+        ],
+        "influences": [
+            "Post-Punk Revival",
+            "Indie Rock",
+            "Alternative Rock"
+        ],
+        "influenced_by_artists": [
+            "Joy Division",
+            "The Cure",
+            "Echo & The Bunnymen",
+            "Depeche Mode"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Bass Guitar",
+            "Drums",
+            "Synthesizer"
+        ],
+        "themes": [
+            "Existentialism",
+            "Emotional Struggle",
+            "Urban Life",
+            "Isolation",
+            "Love"
+        ],
+        "subgenres": [
+            "Gothic Rock",
+            "Synthpop",
+            "New Wave"
+        ]
+    },
+    {
+        "name": "Nick Cave & The Bad Seeds",
+        "entity_id": "C1D580A6-D5EE-4E20-BCE5-061D8457C7D9",
+        "image_url": "https://images.qloo.com/i/C1D580A6-D5EE-4E20-BCE5-061D8457C7D9-420x-auto.jpg",
+        "genres": [
+            "Singer & Songwriter",
+            "Post Punk",
+            "Rock",
+            "Alternative Rock"
+        ],
+        "audiences": [
+            "Dedicated",
+            "Passionate",
+            "Loyal",
+            "Cult",
+            "Introspective"
+        ],
+        "styles": [
+            "Theatrical",
+            "Intense",
+            "Emotional",
+            "Brooding",
+            "Narrative",
+            "Post-Punk",
+            "Gothic Rock",
+            "Blues Rock",
+            "Experimental Rock",
+            "Dark Wave"
+        ],
+        "characteristics": [
+            "Dark",
+            "Intense",
+            "Poetic",
+            "Brooding",
+            "Emotional",
+            "Narrative"
+        ],
+        "influences": [
+            "Alternative Rock",
+            "Gothic Rock",
+            "Post-Punk",
+            "Dark Wave"
+        ],
+        "influenced_by_artists": [
+            "Leonard Cohen",
+            "Johnny Cash",
+            "Bob Dylan",
+            "Patti Smith",
+            "The Velvet Underground"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Piano",
+            "Organ",
+            "Drums",
+            "Bass Guitar",
+            "Violin",
+            "Harmonica"
+        ],
+        "themes": [
+            "Love",
+            "Death",
+            "Religion",
+            "Violence",
+            "Redemption",
+            "Despair"
+        ],
+        "subgenres": [
+            "Punk Blues",
+            "Garage Rock",
+            "Dark Wave"
+        ]
+    },
+    {
+        "name": "Bryan Adams",
+        "entity_id": "AE014E94-D595-4C48-ACA6-646A78C9B6FC",
+        "image_url": "https://images.qloo.com/i/AE014E94-D595-4C48-ACA6-646A78C9B6FC-420x-auto.jpg",
+        "genres": [
+            "Classic Rock",
+            "Canadian",
+            "80s",
+            "Rock"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Dedicated",
+            "Diverse"
+        ],
+        "styles": [
+            "Energetic",
+            "Engaging",
+            "Passionate",
+            "Dynamic",
+            "Heartland Rock",
+            "Arena Rock",
+            "Pop Rock",
+            "Soft Rock",
+            "Adult Contemporary"
+        ],
+        "characteristics": [
+            "Raspy",
+            "Energetic",
+            "Melodic",
+            "Passionate",
+            "Distinctive"
+        ],
+        "influences": [
+            "Pop Rock",
+            "Heartland Rock",
+            "Adult Contemporary"
+        ],
+        "influenced_by_artists": [
+            "The Rolling Stones",
+            "The Beatles",
+            "Bob Dylan",
+            "Bruce Springsteen"
+        ],
+        "instruments": [
+            "Guitar",
+            "Piano",
+            "Vocals"
+        ],
+        "themes": [
+            "Love",
+            "Heartbreak",
+            "Nostalgia",
+            "Perseverance",
+            "Romance"
+        ],
+        "subgenres": [
+            "Heartland Rock",
+            "Adult Contemporary"
+        ]
+    },
+    {
+        "name": "Eddie Vedder",
+        "entity_id": "9FAEB9DB-CFC9-4BCA-8675-E3CCFD6198E3",
+        "image_url": "https://images.qloo.com/i/9FAEB9DB-CFC9-4BCA-8675-E3CCFD6198E3-420x-auto.jpg",
+        "genres": [
+            "Alternative Rock",
+            "Rock",
+            "Singer & Songwriter",
+            "Folk",
+            "Grunge"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Dedicated",
+            "Socially Conscious"
+        ],
+        "styles": [
+            "Energetic",
+            "Engaging",
+            "Passionate",
+            "Raw",
+            "Intense",
+            "Grunge",
+            "Alternative Rock",
+            "Post-Grunge",
+            "Folk Rock",
+            "Hard Rock"
+        ],
+        "characteristics": [
+            "Passionate",
+            "Intense",
+            "Soulful",
+            "Expressive",
+            "Charismatic"
+        ],
+        "influences": [
+            "Alternative Rock",
+            "Grunge",
+            "Post-Grunge"
+        ],
+        "influenced_by_artists": [
+            "The Who",
+            "The Beatles",
+            "Neil Young",
+            "The Doors",
+            "Bruce Springsteen"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Ukulele"
+        ],
+        "themes": [
+            "Social Issues",
+            "Personal Struggles",
+            "Love",
+            "Loss",
+            "Political Activism"
+        ],
+        "subgenres": [
+            "Folk Rock",
+            "Hard Rock"
+        ]
+    },
+    {
+        "name": "Thom Yorke",
+        "entity_id": "C8DB6D4F-FE7B-465B-92CA-A472E1184E66",
+        "image_url": "https://images.qloo.com/i/C8DB6D4F-FE7B-465B-92CA-A472E1184E66-420x-auto.jpg",
+        "genres": [
+            "Singer & Songwriter",
+            "Electronic",
+            "Experimental",
+            "Alternative Rock",
+            "Indie"
+        ],
+        "audiences": [
+            "Dedicated",
+            "Intellectual",
+            "Passionate",
+            "Loyal"
+        ],
+        "styles": [
+            "Expressive",
+            "Intense",
+            "Dynamic",
+            "Emotive",
+            "Glitchy",
+            "Ambient",
+            "Post-Rock",
+            "Electronica",
+            "Art-Rock"
+        ],
+        "characteristics": [
+            "Innovative",
+            "Expressive",
+            "Experimental",
+            "Melancholic",
+            "Introspective"
+        ],
+        "influences": [
+            "Alternative Rock",
+            "Electronic",
+            "Experimental Rock",
+            "Indie Rock"
+        ],
+        "influenced_by_artists": [
+            "The Beatles",
+            "David Bowie",
+            "Kraftwerk",
+            "Pixies",
+            "Neil Young"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Piano",
+            "Synthesizers"
+        ],
+        "themes": [
+            "Alienation",
+            "Technology",
+            "Politics",
+            "Environmentalism",
+            "Mental Health"
+        ],
+        "subgenres": [
+            "Art Rock",
+            "Indie Rock",
+            "Trip Hop",
+            "Ambient"
+        ]
+    },
+    {
+        "name": "Edward Sharpe & The Magnetic Zeros",
+        "entity_id": "A63C40DD-CC05-43D6-9BF2-608B1CBE9579",
+        "image_url": "https://images.qloo.com/i/A63C40DD-CC05-43D6-9BF2-608B1CBE9579-420x-auto.jpg",
+        "genres": [
+            "Indie",
+            "Indie Pop",
+            "Folk",
+            "Indie - Folk"
+        ],
+        "audiences": [
+            "Bohemian",
+            "Free-Spirited",
+            "Communal",
+            "Loyal",
+            "Passionate"
+        ],
+        "styles": [
+            "Energetic",
+            "Joyous",
+            "Inclusive",
+            "Communal",
+            "Spontaneous",
+            "Indie Folk",
+            "Psychedelic Folk",
+            "Neo-Psychedelia",
+            "Folk Rock",
+            "Alternative Folk"
+        ],
+        "characteristics": [
+            "Communal",
+            "Eclectic",
+            "Energetic",
+            "Harmonious",
+            "Bohemian"
+        ],
+        "influences": [
+            "Indie Folk",
+            "Neo-Psychedelia",
+            "Alternative Folk"
+        ],
+        "influenced_by_artists": [
+            "Bob Dylan",
+            "The Band",
+            "The Beatles",
+            "Neil Young"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Banjo",
+            "Drums",
+            "Bass",
+            "Keyboards",
+            "Trumpet",
+            "Percussion"
+        ],
+        "themes": [
+            "Love",
+            "Community",
+            "Spirituality",
+            "Freedom",
+            "Nature"
+        ],
+        "subgenres": [
+            "Neo-Psychedelia",
+            "Alternative Rock"
+        ]
+    },
+    {
+        "name": "James Brown",
+        "entity_id": "7CC006EE-5152-4D84-A99A-D55D4695BA2D",
+        "image_url": "https://images.qloo.com/i/7CC006EE-5152-4D84-A99A-D55D4695BA2D-420x-auto.jpg",
+        "genres": [
+            "Funk",
+            "Soul",
+            "Blues",
+            "Rhythm & Blues"
+        ],
+        "audiences": [
+            "Devoted",
+            "Energetic",
+            "Passionate",
+            "Loyal"
+        ],
+        "styles": [
+            "Energetic",
+            "Dynamic",
+            "Charismatic",
+            "Expressive",
+            "Engaging",
+            "Funky",
+            "Soulful",
+            "Rhythmic",
+            "Pioneering",
+            "Expressive"
+        ],
+        "characteristics": [
+            "Energetic",
+            "Innovative",
+            "Charismatic",
+            "Dynamic",
+            "Pioneering"
+        ],
+        "influences": [
+            "Funk",
+            "Hip-Hop",
+            "Disco",
+            "Dance Music",
+            "Contemporary R&B"
+        ],
+        "influenced_by_artists": [
+            "Ray Charles",
+            "Little Richard",
+            "Sam Cooke",
+            "Gospel Music"
+        ],
+        "instruments": [
+            "Vocals",
+            "Piano",
+            "Organ",
+            "Guitar"
+        ],
+        "themes": [
+            "Love",
+            "Social Issues",
+            "Empowerment",
+            "Party",
+            "Life Struggles"
+        ],
+        "subgenres": [
+            "Gospel",
+            "Blues",
+            "Jazz"
+        ]
+    },
+    {
+        "name": "J. Cole",
+        "entity_id": "75422648-F55C-4620-91C8-C9CF153E28C0",
+        "image_url": "https://images.qloo.com/i/75422648-F55C-4620-91C8-C9CF153E28C0-420x-auto.jpg",
+        "genres": [
+            "Jazz Hop",
+            "Hip - Hop",
+            "Rap",
+            "Underground Hip Hop"
+        ],
+        "audiences": [
+            "Loyal",
+            "Thoughtful",
+            "Passionate",
+            "Engaged"
+        ],
+        "styles": [
+            "Energetic",
+            "Engaging",
+            "Authentic",
+            "Passionate",
+            "Conscious Hip Hop",
+            "Soulful Rap",
+            "Storytelling Lyricism",
+            "Introspective Rap",
+            "Alternative Hip Hop"
+        ],
+        "characteristics": [
+            "Introspective",
+            "Thoughtful",
+            "Storyteller",
+            "Soulful",
+            "Lyrical"
+        ],
+        "influences": [
+            "Conscious Hip Hop",
+            "Alternative Hip Hop"
+        ],
+        "influenced_by_artists": [
+            "Jay-Z",
+            "Nas",
+            "Kanye West",
+            "The Notorious B.I.G."
+        ],
+        "instruments": [
+            "Vocals",
+            "Piano",
+            "Drum Machine"
+        ],
+        "themes": [
+            "Social Issues",
+            "Personal Struggle",
+            "Self-Reflection",
+            "Love",
+            "Ambition"
+        ],
+        "subgenres": [
+            "Conscious Hip Hop",
+            "East Coast Hip Hop"
+        ]
+    },
+    {
+        "name": "Nat King Cole",
+        "entity_id": "E0CD9B0B-75BB-4DAE-BCB7-79AB5DE42A0D",
+        "image_url": "https://images.qloo.com/i/E0CD9B0B-75BB-4DAE-BCB7-79AB5DE42A0D-420x-auto.jpg",
+        "genres": [
+            "Swing",
+            "Oldies",
+            "Jazz",
+            "Blues",
+            "Vocal Jazz"
+        ],
+        "audiences": [
+            "Loyal",
+            "Appreciative",
+            "Sophisticated",
+            "Nostalgic"
+        ],
+        "styles": [
+            "Elegant",
+            "Intimate",
+            "Charismatic",
+            "Vocal Jazz",
+            "Traditional Pop",
+            "Swing Jazz",
+            "Soulful Balladry",
+            "Smooth Crooning"
+        ],
+        "characteristics": [
+            "Smooth",
+            "Velvety",
+            "Warm",
+            "Soulful",
+            "Elegant"
+        ],
+        "influences": [
+            "Traditional Pop",
+            "Soul",
+            "R&B",
+            "Smooth Jazz"
+        ],
+        "influenced_by_artists": [
+            "Louis Armstrong",
+            "Bing Crosby",
+            "Count Basie"
+        ],
+        "instruments": [
+            "Piano"
+        ],
+        "themes": [
+            "Love",
+            "Romance",
+            "Heartbreak",
+            "Hope",
+            "Nostalgia"
+        ],
+        "subgenres": [
+            "Swing",
+            "Blues",
+            "Soul"
+        ]
+    },
+    {
+        "name": "Chuck Berry",
+        "entity_id": "51619791-C11D-4E9E-9B13-5863BCD3F99E",
+        "image_url": "https://images.qloo.com/i/51619791-C11D-4E9E-9B13-5863BCD3F99E-420x-auto.jpg",
+        "genres": [
+            "Blues",
+            "Rock",
+            "Classic Rock"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Diverse",
+            "Dedicated"
+        ],
+        "styles": [
+            "Dynamic",
+            "Showman",
+            "Engaging",
+            "Energetic",
+            "Classic Rock and Roll",
+            "Blues-Infused Rock",
+            "Guitar-Driven",
+            "Storytelling",
+            "Rhythmic"
+        ],
+        "characteristics": [
+            "Innovative",
+            "Energetic",
+            "Charismatic",
+            "Pioneering",
+            "Influential"
+        ],
+        "influences": [
+            "Rock and Roll",
+            "Rockabilly",
+            "Hard Rock",
+            "Punk Rock"
+        ],
+        "influenced_by_artists": [
+            "Muddy Waters",
+            "T-Bone Walker",
+            "Louis Jordan"
+        ],
+        "instruments": [
+            "Electric Guitar",
+            "Acoustic Guitar",
+            "Vocals"
+        ],
+        "themes": [
+            "Youth",
+            "Cars",
+            "Love",
+            "Rebellion",
+            "Everyday Life"
+        ],
+        "subgenres": [
+            "Rhythm and Blues",
+            "Country"
+        ]
+    },
+    {
+        "name": "Harry Styles",
+        "entity_id": "5D28EDAC-F84F-42EB-8DB3-28EC65330287",
+        "image_url": "https://images.qloo.com/i/5D28EDAC-F84F-42EB-8DB3-28EC65330287-420x-auto.jpg",
+        "genres": [
+            "Rock",
+            "Alternative Rock",
+            "Pop - Rock"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Diverse",
+            "Creative",
+            "Supportive"
+        ],
+        "styles": [
+            "Charismatic",
+            "Engaging",
+            "Dynamic",
+            "Expressive",
+            "Energetic",
+            "Baroque Pop",
+            "Soft Rock",
+            "Psychedelic Pop",
+            "Folk Rock",
+            "Glam Rock"
+        ],
+        "characteristics": [
+            "Charismatic",
+            "Versatile",
+            "Stylish",
+            "Expressive",
+            "Innovative"
+        ],
+        "influences": [
+            "Pop Rock",
+            "Indie Pop",
+            "Contemporary Pop"
+        ],
+        "influenced_by_artists": [
+            "The Beatles",
+            "David Bowie",
+            "Fleetwood Mac",
+            "Elton John",
+            "Prince"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar",
+            "Piano"
+        ],
+        "themes": [
+            "Love",
+            "Self-discovery",
+            "Heartbreak",
+            "Freedom",
+            "Identity"
+        ],
+        "subgenres": [
+            "Rock",
+            "Folk Rock",
+            "Synth-pop"
+        ]
+    },
+    {
+        "name": "Édith Piaf",
+        "entity_id": "75AA462F-F6F2-4DCB-AC92-6024C3BF8A84",
+        "image_url": "https://images.qloo.com/i/75AA462F-F6F2-4DCB-AC92-6024C3BF8A84-420x-auto.jpg",
+        "genres": [
+            "Jazz",
+            "Chanson Francaise",
+            "French",
+            "Chanson"
+        ],
+        "audiences": [
+            "Devoted",
+            "Passionate",
+            "Loyal",
+            "Emotional"
+        ],
+        "styles": [
+            "Intimate",
+            "Expressive",
+            "Dramatic",
+            "Passionate",
+            "French Chanson",
+            "Torch Song",
+            "Melancholic Ballad",
+            "Dramatic Vocal",
+            "Emotive Storytelling"
+        ],
+        "characteristics": [
+            "Emotional",
+            "Powerful",
+            "Expressive",
+            "Dramatic",
+            "Passionate"
+        ],
+        "influences": [
+            "French Pop",
+            "Chanson",
+            "Torch Song"
+        ],
+        "influenced_by_artists": [
+            "Damia",
+            "Fréhel",
+            "Yvette Guilbert"
+        ],
+        "instruments": [
+            "Vocals"
+        ],
+        "themes": [
+            "Love",
+            "Loss",
+            "Heartbreak",
+            "Resilience",
+            "Sorrow"
+        ],
+        "subgenres": [
+            "Cabaret",
+            "Torch Song"
+        ]
+    },
+    {
+        "name": "Jake Bugg",
+        "entity_id": "60884B63-0D3A-4263-8610-89244683B5F3",
+        "image_url": "https://images.qloo.com/i/60884B63-0D3A-4263-8610-89244683B5F3-420x-auto.jpg",
+        "genres": [
+            "Singer & Songwriter",
+            "Folk",
+            "Indie",
+            "British"
+        ],
+        "audiences": [
+            "Loyal",
+            "Passionate",
+            "Youthful",
+            "Indie",
+            "Authentic"
+        ],
+        "styles": [
+            "Intimate",
+            "Energetic",
+            "Raw",
+            "Engaging",
+            "Indie Folk Rock",
+            "Acoustic Storytelling",
+            "Baritone Vocal",
+            "Melancholic Rock",
+            "Authentic Singer-Songwriter"
+        ],
+        "characteristics": [
+            "Distinctive",
+            "Authentic",
+            "Melancholic",
+            "Raw",
+            "Storytelling"
+        ],
+        "influences": [
+            "Indie Rock",
+            "Folk Rock",
+            "Alternative Rock"
+        ],
+        "influenced_by_artists": [
+            "Bob Dylan",
+            "Johnny Cash",
+            "The Beatles",
+            "Oasis",
+            "Elvis Presley"
+        ],
+        "instruments": [
+            "Guitar",
+            "Vocals"
+        ],
+        "themes": [
+            "Youth",
+            "Struggle",
+            "Love",
+            "Working-Class Life",
+            "Personal Experience"
+        ],
+        "subgenres": [
+            "Acoustic",
+            "Singer-Songwriter"
+        ]
+    },
+    {
+        "name": "Duke Ellington",
+        "entity_id": "6BE594D5-018B-41C7-B84A-0435FC4B5BA1",
+        "image_url": "https://images.qloo.com/i/6BE594D5-018B-41C7-B84A-0435FC4B5BA1-420x-auto.jpg",
+        "genres": [
+            "Piano",
+            "Swing",
+            "Jazz",
+            "Big Band",
+            "Blues"
+        ],
+        "audiences": [
+            "Dedicated",
+            "Passionate",
+            "Sophisticated",
+            "Knowledgeable"
+        ],
+        "styles": [
+            "Dynamic",
+            "Charismatic",
+            "Refined",
+            "Energetic",
+            "Big Band Jazz",
+            "Orchestral Jazz",
+            "Swing Era",
+            "Stride Piano",
+            "Blues-Infused Jazz"
+        ],
+        "characteristics": [
+            "Innovative",
+            "Sophisticated",
+            "Elegant",
+            "Influential",
+            "Versatile"
+        ],
+        "influences": [
+            "Jazz Fusion",
+            "Bebop",
+            "Big Band",
+            "Swing Revival"
+        ],
+        "influenced_by_artists": [
+            "James P. Johnson",
+            "Fats Waller",
+            "Jelly Roll Morton",
+            "Louis Armstrong"
+        ],
+        "instruments": [
+            "Piano"
+        ],
+        "themes": [
+            "Love",
+            "Life",
+            "Swing",
+            "Urban Experience",
+            "Romance"
+        ],
+        "subgenres": [
+            "Blues",
+            "Orchestral Jazz",
+            "Stride Piano"
+        ]
+    },
+    {
+        "name": "Shania Twain",
+        "entity_id": "825F5A84-8C82-4915-ABEE-37729AEB430C",
+        "image_url": "https://images.qloo.com/i/825F5A84-8C82-4915-ABEE-37729AEB430C-420x-auto.jpg",
+        "genres": [
+            "Country",
+            "Canadian"
+        ],
+        "audiences": [
+            "Loyal",
+            "Diverse",
+            "Passionate",
+            "Empowered"
+        ],
+        "styles": [
+            "Energetic",
+            "Engaging",
+            "Charismatic",
+            "Confident",
+            "Country Pop",
+            "Adult Contemporary",
+            "Pop Rock",
+            "Country Rock",
+            "Power Ballad"
+        ],
+        "characteristics": [
+            "Powerful",
+            "Charismatic",
+            "Versatile",
+            "Melodic",
+            "Crossover"
+        ],
+        "influences": [
+            "Country Pop",
+            "Pop Country",
+            "Adult Contemporary"
+        ],
+        "influenced_by_artists": [
+            "Dolly Parton",
+            "Loretta Lynn",
+            "Reba McEntire",
+            "Madonna"
+        ],
+        "instruments": [
+            "Vocals",
+            "Guitar"
+        ],
+        "themes": [
+            "Love",
+            "Empowerment",
+            "Relationships",
+            "Self-Confidence",
+            "Independence"
+        ],
+        "subgenres": [
+            "Pop",
+            "Adult Contemporary"
+        ]
+    }
+]
