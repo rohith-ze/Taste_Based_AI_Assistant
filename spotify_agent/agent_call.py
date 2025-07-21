@@ -5,9 +5,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from data_gathering import get_playlist, get_last_played, get_song_list, get_liked_songs
-from qloo_call import qloo_taste_analysis , generate_heatmap_from_tracks
+from qloo_call import get_qloo_recommendations
 from langchain.memory import ConversationBufferMemory
-from heatmap import generate_map
+
 
 # Load environment variables from .env file
 load_dotenv()
@@ -34,34 +34,22 @@ tools = [
     get_last_played, 
     get_song_list,
     get_liked_songs,
-    generate_heatmap_from_tracks,
-    generate_map
+    get_qloo_recommendations
 ]
 
 # Updated system prompt
 prompt = ChatPromptTemplate.from_messages([
     ("system", """
-You are a music taste analyzer that:
+You are a music recommendation assistant that:
 
 1. Fetches the user's Spotify data (recent plays, liked songs, playlists).
-2. Analyzes taste using Qloo via the `generate_heatmap_from_tracks` tool:
-   - Automatically infers genres from tracks
-   - Generates brand affinity and popularity values
-3. Visualizes the results using `generate_map(latitude, longitude)`:
-   - This tool **requires latitude and longitude values**
-   - You **must always extract or infer the user's location** before calling it.
-   - If the user gives a city or country, **convert it into latitude and longitude**
+2. Gets music recommendations from Qloo using the `get_qloo_recommendations` tool:
+   - Extracts artist names from the tracks.
+   - Fetches recommendations based on the artists.
 
 Your goals:
 - Use appropriate tools based on user queries
-- If the user wants a heatmap, **always pass lat and long to `generate_map`**
-- Do not ask the user to provide lat/long — handle it yourself
-
-
-RULES:
-- Never modify genre tags — the tool handles this
-- If heatmap data is insufficient, suggest trying more songs
-- Be concise, visual, and helpful
+- Be concise and helpful
 """),
     ("human", "{input}"),
     ("placeholder", "{agent_scratchpad}")
@@ -83,11 +71,6 @@ agent_executor = AgentExecutor(agent=agent, tools=tools,memory=memory, verbose=T
 
 if __name__ == "__main__":
     # Example usage of the agent
-    query = "Find my recently played songs, analyze my taste using Qloo, and summarize what kind of music I like. and  i am From India"
+    query = "Get music recommendations based on my recently played songs."
     response = agent_executor.invoke({"input": query})
     print(response)
-    """
-    query = "What was the last song I listened to?"
-    response = agent_executor.invoke({"input": query})
-    print(response)
-    """
