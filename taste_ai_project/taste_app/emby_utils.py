@@ -40,16 +40,12 @@ def get_watched_movies(emby_server, api_key, user_id):
         'Recursive': 'true',
         'SortBy': 'DatePlayed',
         'Filters': 'IsPlayed',
-        'Fields':'Genre',
-        'api_key': api_key,
-        
+        'Fields': 'Genres,GenreItems,Tags',
+        'api_key': api_key
     }
 
     try:
         res = requests.get(url, params=params)
-        data = res.json()
-        with open("get_watched_movies.json",'w')as f:
-            json.dump(data,f)
         if "html" in res.headers.get("Content-Type", ""):
             print("[ERROR] Emby returned HTML instead of JSON. Check server URL or API key.")
             print("[DEBUG] Response:", res.text[:200])
@@ -82,7 +78,10 @@ def get_watched_movies(emby_server, api_key, user_id):
 
 
 # Use Qloo Insights API for movie recommendations
-def get_qloo_recommendations(genre_urn, year_min=2022):
+# emby_utils.py (updated function only)
+
+# emby_utils.py (only updated function shown)
+def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None):
     url = "https://hackathon.api.qloo.com/v2/insights"
     headers = {
         "x-api-key": os.getenv("QLOO_API_KEY")
@@ -112,3 +111,19 @@ def get_qloo_recommendations(genre_urn, year_min=2022):
         print("[❌] Exception in Qloo insights:", e)
         return []
 
+def get_emby_play_url(movie_id: str) -> str:
+    """
+    Construct a playable Emby URL for a given movie item ID.
+    Assumes EMBY_SERVER and API_KEY are set in .env
+    """
+    import os
+    from urllib.parse import urlencode
+
+    emby_server = os.getenv("EMBY_SERVER")
+    api_key = os.getenv("EMBY_API_KEY")
+
+    if not emby_server or not api_key:
+        return ""
+
+    params = urlencode({'api_key': api_key})
+    return f"{emby_server}/web/index.html#!/item?id={movie_id}&{params}"

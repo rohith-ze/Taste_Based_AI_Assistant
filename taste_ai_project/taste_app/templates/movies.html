@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <h2>Your Watched Movies</h2>
+  {% for movie in watched_movies %}
+    <div class="movie-card">
+      <h3>{{ movie.Name }}</h3>
+      {% if movie.image_url %}
+        <img src="{{ movie.image_url }}" alt="{{ movie.Name }}" style="width:100%; border-radius: 5px;">
+      {% endif %}
+      {% if movie.Genres %}
+        <p>Genres: {{ movie.Genres|join:", " }}</p>
+      {% endif %}
+    </div>
+  {% empty %}
+    <p>No watched movies found.</p>
+  {% endfor %}
+
+  <h2>AI‑Recommended Movies</h2>
+  <div class="movie-list">
+    {% for movie in recommended_movies %}
+      <div class="movie-card">
+        <h3>{{ movie }}</h3>
+      </div>
+    {% empty %}
+      <p>No recommendations available yet.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

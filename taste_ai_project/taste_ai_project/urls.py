@@ -1,5 +1,5 @@
 """
-URL configuration for Taste_AI project.
+URL configuration for taste_ai_project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from taste_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('movies/', views.movies, name='movies'),
+    path('music/', views.music, name='music'),
+
+    # API endpoints
+    path('api/movies/watched', views.api_watched),
+    path('api/movies/recommended', views.api_recommended),
+    path('api/movies/url/<str:item_id>', views.api_play_url),
+    path('api/music/recommend', views.api_music_recommend),  # Add later
 ]
+

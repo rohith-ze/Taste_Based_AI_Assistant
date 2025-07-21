@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+  <h2>Your Favorite Music</h2>
+  <div id="music-list" class="grid"></div>
+
+  <h2>Music Recommendations</h2>
+  <div id="music-reco" class="grid"></div>
+</section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/api/music/recommend').then(r => r.json()).then(renderMusic);
+});
+function renderMusic(data) {
+  let dom = document.getElementById('music-reco');
+  data.forEach(m => {
+    let d = document.createElement('div');
+    d.className = 'card';
+    d.innerHTML = `<h3>${m.title}</h3><p>${m.artist}</p>`;
+    dom.appendChild(d);
+  });
+}
+</script>
+{% endblock %}
