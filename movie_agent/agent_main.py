@@ -21,7 +21,7 @@ llm = ChatGoogleGenerativeAI(
 tools = [fetch_watched_movies, recommend_movies, summarize_movie_taste]
 
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a movie taste analysis assistant. Use the tools to fetch watched movies from Emby, get taste-based recommendations from Qloo, and summarize how well the recommendations match the user's taste."),
+    ("system", "You are a movie taste analysis assistant. Use the tools to fetch watched movies from Emby, get taste-based recommendations from Qloo based on both the previously watched global movies as well as the location, and summarize how well the recommendations match the user's taste."),
     ("human", "{input}"),
     ("placeholder", "{agent_scratchpad}")
 ])

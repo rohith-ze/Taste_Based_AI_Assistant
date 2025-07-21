@@ -12,8 +12,9 @@ load_dotenv()
 EMBY_SERVER = os.getenv("EMBY_SERVER")
 EMBY_API_KEY = os.getenv("EMBY_API_KEY")
 USER_NAME = os.getenv("USER_NAME")
+USER_LOCATION = os.getenv("USER_LOCATION", "India")  # loaded from .env
 
-# Store movies globally for reuse
+# Cache
 watched_cache = []
 recommended_cache = []
 
@@ -35,7 +36,7 @@ def _get_top_genre(movies: List[dict]) -> str:
 
     if not genre_list:
         print("[❌] No genres found in Emby data.")
-        return "urn:tag:genre:media:drama"  # Fallback genre
+        return "urn:tag:genre:media:drama"  # fallback genre
 
     top_genre = Counter(genre_list).most_common(1)[0][0].lower().replace(" ", "_")
     return f"urn:tag:genre:media:{top_genre}"
@@ -49,16 +50,39 @@ def fetch_watched_movies() -> List[dict]:
 
 @tool
 def recommend_movies() -> List[str]:
-    """Recommend new movies based on watched history using Qloo."""
+    """Recommend movies using Qloo based on both watched history and user location."""
     global watched_cache, recommended_cache
     if not watched_cache:
         watched_cache = _fetch_movies()
 
     genre_urn = _get_top_genre(watched_cache)
-    print(f"[🎯] Using top genre: {genre_urn}")
+    location = USER_LOCATION
+    print(f"[🎯] Fetching recommendations by genre: {genre_urn} and location: {location}")
 
-    recommended_cache = get_qloo_recommendations(genre_urn=genre_urn, year_min=2020)
-    return recommended_cache
+    # Step 1: Fetch taste-based recommendations
+    taste_based = get_qloo_recommendations(
+        genre_urn=genre_urn,
+        year_min=2020,
+        location_query=None  # no location here
+    )
+
+    # Step 2: Fetch location-based recommendations
+    location_based = get_qloo_recommendations(
+        genre_urn=None,
+        year_min=2020,
+        location_query=location
+    )
+
+    # Step 3: Merge while preserving order & deduplication
+    seen = set()
+    merged = []
+    for movie in taste_based + location_based:
+        if movie not in seen:
+            seen.add(movie)
+            merged.append(movie)
+
+    recommended_cache = merged
+    return merged
 
 @tool
 def summarize_movie_taste() -> str:

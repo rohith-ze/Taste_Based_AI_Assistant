@@ -78,7 +78,10 @@ def get_watched_movies(emby_server, api_key, user_id):
 
 
 # Use Qloo Insights API for movie recommendations
-def get_qloo_recommendations(genre_urn="urn:tag:genre:media:comedy", year_min=2022):
+# emby_utils.py (updated function only)
+
+# emby_utils.py (only updated function shown)
+def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None):
     url = "https://hackathon.api.qloo.com/v2/insights"
     headers = {
         "x-api-key": os.getenv("QLOO_API_KEY")
@@ -86,9 +89,13 @@ def get_qloo_recommendations(genre_urn="urn:tag:genre:media:comedy", year_min=20
 
     params = {
         "filter.type": "urn:entity:movie",
-        "filter.tags": genre_urn,
         "filter.release_year.min": year_min
     }
+
+    if genre_urn:
+        params["filter.tags"] = genre_urn
+    if location_query:
+        params["signal.location.query"] = location_query
 
     try:
         res = requests.get(url, headers=headers, params=params)
@@ -103,3 +110,4 @@ def get_qloo_recommendations(genre_urn="urn:tag:genre:media:comedy", year_min=20
     except Exception as e:
         print("[❌] Exception in Qloo insights:", e)
         return []
+
