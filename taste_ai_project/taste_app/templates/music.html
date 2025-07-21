@@ -1,24 +1,20 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% block title %}Music - {{ block.super }}{% endblock %}
 {% block content %}
-<section class="panel">
-  <h2>Your Favorite Music</h2>
-  <div id="music-list" class="grid"></div>
-
-  <h2>Music Recommendations</h2>
-  <div id="music-reco" class="grid"></div>
-</section>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  fetch('/api/music/recommend').then(r => r.json()).then(renderMusic);
-});
-function renderMusic(data) {
-  let dom = document.getElementById('music-reco');
-  data.forEach(m => {
-    let d = document.createElement('div');
-    d.className = 'card';
-    d.innerHTML = `<h3>${m.title}</h3><p>${m.artist}</p>`;
-    dom.appendChild(d);
-  });
-}
-</script>
+<div class="container page-container">
+    <section class="media-section">
+        <h2 class="media-title">Top Albums</h2>
+        <div class="media-grid">
+            {% for album in music %}
+            <div class="media-item">
+                <img src="{{ album.image_url }}" alt="{{ album.name }}">
+                <div class="item-info">
+                    <h3 class="item-name">{{ album.name }}</h3>
+                    <p class="item-genres">{{ album.artist }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
 {% endblock %}
