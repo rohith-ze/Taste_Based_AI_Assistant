@@ -33,7 +33,14 @@ def main():
         print(" -", title)
 
     print("\n🔍 Getting Taste-based Recommendations using Qloo Insights...")
-    recommended = get_qloo_recommendations(genre_urn="urn:tag:genre:media:comedy", year_min=2022)
+    all_genres = [genre for movie in watched for genre in movie.get('Genres', [])]
+    if all_genres:
+        most_common_genre = max(set(all_genres), key=all_genres.count)
+        genre_urn = f"urn:tag:genre:media:{most_common_genre.lower()}"
+    else:
+        # Default genre if no watched movies have genres
+        most_common_genre = 'comedy'
+        genre_urn = f"urn:tag:genre:media:{most_common_genre.lower()}"
 
     if recommended:
         print("\n📽️ Recommended Movies:")

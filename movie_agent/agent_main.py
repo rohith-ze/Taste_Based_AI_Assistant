@@ -30,6 +30,17 @@ agent = create_tool_calling_agent(llm=llm, tools=tools, prompt=prompt)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 if __name__ == "__main__":
-    question = "What kind of movies do I like based on my Emby history, and are the Qloo recommendations a good fit?"
+    # First, fetch watched movies to find the most common genre
+    watched_movies = fetch_watched_movies.invoke({})
+    if watched_movies:
+        all_genres = [genre for m in watched_movies for genre in m.get('Genres', [])]
+        if all_genres:
+            most_common_genre = max(set(all_genres), key=all_genres.count)
+        else:
+            most_common_genre = 'comedy'  # Default genre
+    else:
+        most_common_genre = 'comedy'  # Default genre
+
+    question = f"What kind of movies do I like based on my Emby history, and are the Qloo recommendations for '{most_common_genre}' a good fit?"
     result = agent_executor.invoke({"input": question})
     print("\n🎯 Agent Response:\n", result["output"])

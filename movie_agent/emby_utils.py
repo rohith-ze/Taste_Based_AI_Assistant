@@ -40,12 +40,16 @@ def get_watched_movies(emby_server, api_key, user_id):
         'Recursive': 'true',
         'SortBy': 'DatePlayed',
         'Filters': 'IsPlayed',
-        'Fields': 'Genres,GenreItems,Tags',
-        'api_key': api_key
+        'Fields':'Genre',
+        'api_key': api_key,
+        
     }
 
     try:
         res = requests.get(url, params=params)
+        data = res.json()
+        with open("get_watched_movies.json",'w')as f:
+            json.dump(data,f)
         if "html" in res.headers.get("Content-Type", ""):
             print("[ERROR] Emby returned HTML instead of JSON. Check server URL or API key.")
             print("[DEBUG] Response:", res.text[:200])
@@ -78,10 +82,7 @@ def get_watched_movies(emby_server, api_key, user_id):
 
 
 # Use Qloo Insights API for movie recommendations
-# emby_utils.py (updated function only)
-
-# emby_utils.py (only updated function shown)
-def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None):
+def get_qloo_recommendations(genre_urn, year_min=2022):
     url = "https://hackathon.api.qloo.com/v2/insights"
     headers = {
         "x-api-key": os.getenv("QLOO_API_KEY")
