@@ -8,7 +8,7 @@ from gemini_utils import explain_recommendations
 load_dotenv()
 
 @tool
-def fetch_watched_movies() -> list:
+def fetch_watched_movies():
     """Fetch recently watched movies from Emby."""
     try:
         emby_server = os.getenv("EMBY_SERVER")
@@ -24,11 +24,11 @@ def fetch_watched_movies() -> list:
         return []
 
 @tool
-def recommend_movies() -> list:
-    """Get Qloo taste-based movie recommendations."""
+def recommend_movies(genre: str) -> list:
+    """Get Qloo taste-based movie recommendations for a specific genre."""
     try:
-        # Hardcoded genre can be updated to dynamic genre extraction logic later
-        return get_qloo_recommendations(genre_urn="urn:tag:genre:media:comedy", year_min=2022)
+        genre_urn = f"urn:tag:genre:media:{genre.lower()}"
+        return get_qloo_recommendations(genre_urn=genre_urn, year_min=2022)
     except Exception as e:
         print("[ERROR] Failed to fetch Qloo recommendations:", e)
         return []
@@ -46,7 +46,19 @@ def summarize_movie_taste() -> str:
 
         watched = get_watched_movies(emby_server, api_key, user_id)
         watched_titles = [m['Name'] for m in watched][:5]
-        recommended = get_qloo_recommendations()
+
+        # Extract genres and find the most common one
+        all_genres = [genre for m in watched for genre in m.get('Genres', [])]
+        if all_genres:
+            most_common_genre = max(set(all_genres), key=all_genres.count)
+            genre_urn = f"urn:tag:genre:media:{most_common_genre.lower()}"
+        else:
+            # Default genre if no watched movies have genres
+            most_common_genre = 'comedy'
+            genre_urn = f"urn:tag:genre:media:{most_common_genre.lower()}"
+
+
+        recommended = get_qloo_recommendations(genre_urn=genre_urn)
         return explain_recommendations(watched_titles, recommended)
     except Exception as e:
         return f"[ERROR] Summary generation failed: {e}"
