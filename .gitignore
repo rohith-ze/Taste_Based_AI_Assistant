@@ -7,7 +7,7 @@ __pycache__/
 *.so
 access_token.json
 return_data.json
-apitest.py
+apite.py
 earth
 # Distribution / packaging
 .Python
@@ -222,3 +222,4 @@ movie_agent/__pycache__/emby_utils.cpython-312.pyc
 movie_agent/__pycache__/emby_utils.cpython-312.pyc
 movie_agent/__pycache__/gemini_utils.cpython-312.pyc
 spotify_agent/just_curls.txt
+just_curls.txt
