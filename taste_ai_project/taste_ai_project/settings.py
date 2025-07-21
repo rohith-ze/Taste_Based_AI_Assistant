@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "taste_app/static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Templates
 TEMPLATES[0]['DIRS'] = [BASE_DIR / "taste_app/templates"]
