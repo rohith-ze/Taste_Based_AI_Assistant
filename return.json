@@ -1,0 +1,457 @@
+{
+    "success": true,
+    "query": {
+        "entities": [
+            {
+                "entity_id": "4BBEF799-A0C4-4110-AB01-39216993C312",
+                "name": "Taylor Swift",
+                "population_percentile": 0.9997594632594446,
+                "types": [
+                    "urn:entity:artist"
+                ],
+                "disambiguation": "Taylor Swift",
+                "properties": {
+                    "external": {
+                        "facebook": {
+                            "id": "katyperry"
+                        },
+                        "instagram": {
+                            "id": "katyperry"
+                        },
+                        "lastfm": {
+                            "id": "taylor%20swift",
+                            "listeners": 4487355,
+                            "scrobbles": 2060553717
+                        },
+                        "musicbrainz": {
+                            "id": "836dd69e-b3fa-4549-9424-2d1d77c358c9"
+                        },
+                        "spotify": {
+                            "id": "5aY8kKU42BlnNzFUQKgU8w"
+                        },
+                        "twitter": {
+                            "id": "katyperry"
+                        },
+                        "wikidata": {
+                            "id": "q26876"
+                        }
+                    },
+                    "image": {
+                        "url": "https://lastfm.freetls.fastly.net/i/u/770x0/2a96cbd8b46e442.jpg"
+                    }
+                },
+                "tags": [
+                    {
+                        "name": "Singer-songwriter",
+                        "tag_id": "urn:tag:genre:singer_songwriter",
+                        "type": "urn:tag:genre",
+                        "value": "urn:tag:genre:singer_songwriter"
+                    },
+                    {
+                        "name": "Acoustic",
+                        "tag_id": "urn:tag:genre:acoustic",
+                        "type": "urn:tag:genre",
+                        "value": "urn:tag:genre:acoustic"
+                    },
+                    {
+                        "name": "Pop",
+                        "tag_id": "urn:tag:genre:pop",
+                        "type": "urn:tag:genre",
+                        "value": "urn:tag:genre:pop"
+                    },
+                    {
+                        "name": "Country",
+                        "tag_id": "urn:tag:genre:country",
+                        "type": "urn:tag:genre",
+                        "value": "urn:tag:genre:country"
+                    }
+                ]
+            }
+        ]
+    },
+    "duration": 0.058578744530677795,
+    "results": {
+        "tags": [
+            {
+                "tag_id": "urn:tag:genre:country",
+                "name": "Country",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.9980956,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8555105,
+                    "_percent_of_score": 0.8555105,
+                    "_score_rank": 1,
+                    "_score_percentile": 1,
+                    "affinity": 0.8555105,
+                    "rank": 1,
+                    "percentile": 1
+                },
+                "value": "urn:tag:genre:country"
+            },
+            {
+                "tag_id": "urn:tag:genre:love_at_first_listen",
+                "name": "Love At First Listen",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.9936618,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.85171014,
+                    "_percent_of_score": 0.85171014,
+                    "_score_rank": 2,
+                    "_score_percentile": 0.9,
+                    "affinity": 0.85171014,
+                    "rank": 2,
+                    "percentile": 0.9
+                },
+                "value": "urn:tag:genre:love_at_first_listen"
+            },
+            {
+                "tag_id": "urn:tag:genre:love",
+                "name": "Love",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.9919062,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.85020536,
+                    "_percent_of_score": 0.85020536,
+                    "_score_rank": 3,
+                    "_score_percentile": 0.8,
+                    "affinity": 0.85020536,
+                    "rank": 3,
+                    "percentile": 0.8
+                },
+                "value": "urn:tag:genre:love"
+            },
+            {
+                "tag_id": "urn:tag:genre:pop",
+                "name": "Pop",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.99056715,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.84905756,
+                    "_percent_of_score": 0.84905756,
+                    "_score_rank": 4,
+                    "_score_percentile": 0.7,
+                    "affinity": 0.84905756,
+                    "rank": 4,
+                    "percentile": 0.7
+                },
+                "value": "urn:tag:genre:pop"
+            },
+            {
+                "tag_id": "urn:tag:genre:female_vocalists",
+                "name": "Female Vocalists",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.98845446,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8472467,
+                    "_percent_of_score": 0.8472467,
+                    "_score_rank": 5,
+                    "_score_percentile": 0.6,
+                    "affinity": 0.8472467,
+                    "rank": 5,
+                    "percentile": 0.6
+                },
+                "value": "urn:tag:genre:female_vocalists"
+            },
+            {
+                "tag_id": "urn:tag:genre:country_pop",
+                "name": "Country Pop",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.9858061,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.84497666,
+                    "_percent_of_score": 0.84497666,
+                    "_score_rank": 6,
+                    "_score_percentile": 0.5,
+                    "affinity": 0.84497666,
+                    "rank": 6,
+                    "percentile": 0.5
+                },
+                "value": "urn:tag:genre:country_pop"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:american_women_pop_singers",
+                "name": "American Women Pop Singers",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.9850556,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8443334,
+                    "_percent_of_score": 0.8443334,
+                    "_score_rank": 1,
+                    "_score_percentile": 1,
+                    "affinity": 0.8443334,
+                    "rank": 1,
+                    "percentile": 1
+                },
+                "value": "urn:property:wikipedia_category:american_women_pop_singers"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:feminist_musicians",
+                "name": "Feminist Musicians",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.98134845,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8411558,
+                    "_percent_of_score": 0.8411558,
+                    "_score_rank": 2,
+                    "_score_percentile": 0.98,
+                    "affinity": 0.8411558,
+                    "rank": 2,
+                    "percentile": 0.98
+                },
+                "value": "urn:property:wikipedia_category:feminist_musicians"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:american_women_singer_songwriters",
+                "name": "American Women Singer-Songwriters",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.9810009,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8408579,
+                    "_percent_of_score": 0.8408579,
+                    "_score_rank": 3,
+                    "_score_percentile": 0.96,
+                    "affinity": 0.8408579,
+                    "rank": 3,
+                    "percentile": 0.96
+                },
+                "value": "urn:property:wikipedia_category:american_women_singer_songwriters"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:american_television_actresses",
+                "name": "American Television Actresses",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.9755561,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.83619094,
+                    "_percent_of_score": 0.83619094,
+                    "_score_rank": 4,
+                    "_score_percentile": 0.94,
+                    "affinity": 0.83619094,
+                    "rank": 4,
+                    "percentile": 0.94
+                },
+                "value": "urn:property:wikipedia_category:american_television_actresses"
+            },
+            {
+                "tag_id": "urn:tag:genre:acoustic",
+                "name": "Acoustic",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.97503424,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8357436,
+                    "_percent_of_score": 0.8357436,
+                    "_score_rank": 7,
+                    "_score_percentile": 0.4,
+                    "affinity": 0.8357436,
+                    "rank": 7,
+                    "percentile": 0.4
+                },
+                "value": "urn:tag:genre:acoustic"
+            },
+            {
+                "tag_id": "urn:tag:genre:singer_songwriter",
+                "name": "Singer-Songwriter",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.97476643,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.83551407,
+                    "_percent_of_score": 0.83551407,
+                    "_score_rank": 8,
+                    "_score_percentile": 0.3,
+                    "affinity": 0.83551407,
+                    "rank": 8,
+                    "percentile": 0.3
+                },
+                "value": "urn:tag:genre:singer_songwriter"
+            },
+            {
+                "tag_id": "urn:tag:genre:synthpop",
+                "name": "Synthpop",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.97414154,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.83497846,
+                    "_percent_of_score": 0.83497846,
+                    "_score_rank": 9,
+                    "_score_percentile": 0.2,
+                    "affinity": 0.83497846,
+                    "rank": 9,
+                    "percentile": 0.2
+                },
+                "value": "urn:tag:genre:synthpop"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:singer_songwriters_from_tennessee",
+                "name": "Singer-Songwriters From Tennessee",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.97289157,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.83390707,
+                    "_percent_of_score": 0.83390707,
+                    "_score_rank": 5,
+                    "_score_percentile": 0.92,
+                    "affinity": 0.83390707,
+                    "rank": 5,
+                    "percentile": 0.92
+                },
+                "value": "urn:property:wikipedia_category:singer_songwriters_from_tennessee"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:universal_music_group_artists",
+                "name": "Universal Music Group Artists",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.97022706,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8316232,
+                    "_percent_of_score": 0.8316232,
+                    "_score_rank": 6,
+                    "_score_percentile": 0.9,
+                    "affinity": 0.8316232,
+                    "rank": 6,
+                    "percentile": 0.9
+                },
+                "value": "urn:property:wikipedia_category:universal_music_group_artists"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:american_film_actresses",
+                "name": "American Film Actresses",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.9604958,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8232821,
+                    "_percent_of_score": 0.8232821,
+                    "_score_rank": 7,
+                    "_score_percentile": 0.88,
+                    "affinity": 0.8232821,
+                    "rank": 7,
+                    "percentile": 0.88
+                },
+                "value": "urn:property:wikipedia_category:american_film_actresses"
+            },
+            {
+                "tag_id": "urn:tag:genre:christmas",
+                "name": "Christmas",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:genre",
+                "query": {
+                    "_tfidf": 0.96012616,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.82296526,
+                    "_percent_of_score": 0.82296526,
+                    "_score_rank": 10,
+                    "_score_percentile": 0.1,
+                    "affinity": 0.82296526,
+                    "rank": 10,
+                    "percentile": 0.1
+                },
+                "value": "urn:tag:genre:christmas"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:republic_records_artists",
+                "name": "Republic Records Artists",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.9587581,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.82179266,
+                    "_percent_of_score": 0.82179266,
+                    "_score_rank": 8,
+                    "_score_percentile": 0.86,
+                    "affinity": 0.82179266,
+                    "rank": 8,
+                    "percentile": 0.86
+                },
+                "value": "urn:property:wikipedia_category:republic_records_artists"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:mtv_europe_music_award_winners",
+                "name": "Mtv Europe Music Award Winners",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.95400834,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8177214,
+                    "_percent_of_score": 0.8177214,
+                    "_score_rank": 9,
+                    "_score_percentile": 0.84,
+                    "affinity": 0.8177214,
+                    "rank": 9,
+                    "percentile": 0.84
+                },
+                "value": "urn:property:wikipedia_category:mtv_europe_music_award_winners"
+            },
+            {
+                "tag_id": "urn:property:wikipedia_category:american_women_country_singers",
+                "name": "American Women Country Singers",
+                "type": "urn:entity:artist",
+                "subtype": "urn:property:wikipedia_category",
+                "query": {
+                    "_tfidf": 0.95377666,
+                    "_shared_entity_count": 1,
+                    "_percentage_of_entities_tagged": 1,
+                    "_score": 0.8175228,
+                    "_percent_of_score": 0.8175228,
+                    "_score_rank": 10,
+                    "_score_percentile": 0.82,
+                    "affinity": 0.8175228,
+                    "rank": 10,
+                    "percentile": 0.82
+                },
+                "value": "urn:property:wikipedia_category:american_women_country_singers"
+            }
+        ]
+    }
+}

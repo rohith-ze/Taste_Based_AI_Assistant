@@ -13,6 +13,18 @@ query=artist name
 
 
 --------------
-to search insights with entity id
+to get analysis with entity id
+
+curl --request GET \                                  
+     --url 'https://hackathon.api.qloo.com/analysis?entity_ids=4BBEF799-A0C4-4110-AB01-39216993C312&page=1&take=20' \
+     --header 'X-Api-Key: ZBv3Jg6HyzqK515JvxpkERJWJ_BbRXblNMYKITm-2UA' \
+     --header 'accept: application/json' 
 
 
+--------------------------------
+insights
+
+curl --request GET \
+     --url 'https://staging.api.qloo.com/v2/insights?filter.type=urn%3Aentity%3Aartist&signal.interests.entities=4BBEF799-A0C4-4110-AB01-39216993C312' \
+     --header 'X-Api-Key: pppp-2UA' \
+     --header 'accept: application/json'
