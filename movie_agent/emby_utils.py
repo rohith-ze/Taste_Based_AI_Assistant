@@ -40,7 +40,7 @@ def get_watched_movies(emby_server, api_key, user_id):
         'Recursive': 'true',
         'SortBy': 'DatePlayed',
         'Filters': 'IsPlayed',
-        'Fields':'Genre',
+        'Fields': 'Genres,GenreItems,Tags',
         'api_key': api_key,
         
     }
@@ -82,7 +82,7 @@ def get_watched_movies(emby_server, api_key, user_id):
 
 
 # Use Qloo Insights API for movie recommendations
-def get_qloo_recommendations(genre_urn, year_min=2022):
+def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None):
     url = "https://hackathon.api.qloo.com/v2/insights"
     headers = {
         "x-api-key": os.getenv("QLOO_API_KEY")
