@@ -112,3 +112,59 @@ def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None)
         print("[❌] Exception in Qloo insights:", e)
         return []
 
+
+import datetime
+
+# Fetch trending movies from Emby
+def get_trending_movies(emby_server, api_key):
+    url = f"{emby_server}/Items/Trending"
+    params = {
+        'IncludeItemTypes': 'Movie',
+        'Limit': 20,
+        'api_key': api_key
+    }
+
+    try:
+        res = requests.get(url, params=params)
+        data = res.json().get('Items', [])
+        return [{
+            'Name': m.get('Name'),
+            'Id': m.get('Id'),
+            'Year': m.get('ProductionYear'),
+            'Genres': m.get('Genres', []),
+        } for m in data]
+    except Exception as e:
+        print("[❌] Error fetching trending movies:", e)
+        return []
+
+# Fetch recently released movies (within last X months)
+def get_recent_movies(emby_server, api_key, months=3):
+    today = datetime.date.today()
+    from_date = today - datetime.timedelta(days=30 * months)
+    from_str = from_date.isoformat()
+
+    url = f"{emby_server}/Items"
+    params = {
+        'IncludeItemTypes': 'Movie',
+        'SortBy': 'DateCreated',
+        'SortOrder': 'Descending',
+        'Fields': 'Genres',
+        'Limit': 20,
+        'api_key': api_key,
+        'StartIndex': 0,
+        'MinPremiereDate': from_str
+    }
+
+    try:
+        res = requests.get(url, params=params)
+        data = res.json().get('Items', [])
+        return [{
+            'Name': m.get('Name'),
+            'Id': m.get('Id'),
+            'Year': m.get('ProductionYear'),
+            'Genres': m.get('Genres', [])
+        } for m in data]
+    except Exception as e:
+        print("[❌] Error fetching recent movies:", e)
+        return []
+

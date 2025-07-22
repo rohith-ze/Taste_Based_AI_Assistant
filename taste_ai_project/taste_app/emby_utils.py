@@ -259,3 +259,47 @@ def get_latest_music(emby_server, api_key):
     except requests.exceptions.RequestException as e:
         print(f"[❌] Exception while fetching latest music: {e}")
         return []
+
+def get_trending_movies(emby_server, api_key, limit=10):
+    url = f"{emby_server}/Items"
+    params = {
+        "IncludeItemTypes": "Movie",
+        "SortBy": "PlayCount",
+        "SortOrder": "Descending",
+        "Limit": limit,
+        "api_key": api_key
+    }
+    res = requests.get(url, params=params)
+    if res.status_code == 200:
+        data = res.json().get("Items", [])
+        return [{
+            'Name': m.get("Name"),
+            'Id': m.get("Id"),
+            'Genres': m.get("Genres", []),
+            'Year': m.get("ProductionYear")
+        } for m in data]
+    else:
+        print("[❌] Emby trending API error:", res.status_code)
+        return []
+
+def get_recently_released_movies(emby_server, api_key, limit=10):
+    url = f"{emby_server}/Items"
+    params = {
+        "IncludeItemTypes": "Movie",
+        "SortBy": "PremiereDate",
+        "SortOrder": "Descending",
+        "Limit": limit,
+        "api_key": api_key
+    }
+    res = requests.get(url, params=params)
+    if res.status_code == 200:
+        data = res.json().get("Items", [])
+        return [{
+            'Name': m.get("Name"),
+            'Id': m.get("Id"),
+            'Genres': m.get("Genres", []),
+            'Year': m.get("ProductionYear")
+        } for m in data]
+    else:
+        print("[❌] Emby recent release API error:", res.status_code)
+        return []

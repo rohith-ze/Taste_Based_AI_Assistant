@@ -50,3 +50,13 @@ def music_view(request):
     ]
     context = {"music": music_data}
     return render(request, "music.html", context)
+
+from movie_tools import fetch_trending_movies, fetch_recent_movies
+
+def trending_movies(request):
+    movies = fetch_trending_movies({})
+    return render(request, 'trending.html', {'movies': movies})
+
+def recent_movies(request):
+    movies = fetch_recent_movies({})
+    return render(request, 'recent.html', {'movies': movies})

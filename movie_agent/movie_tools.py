@@ -2,7 +2,7 @@
 import os
 from typing import List
 from langchain.tools import tool
-from emby_utils import get_user_id, get_watched_movies, get_qloo_recommendations
+from emby_utils import get_user_id, get_watched_movies, get_qloo_recommendations, get_trending_movies, get_recent_movies
 from gemini_utils import explain_recommendations
 from dotenv import load_dotenv
 from collections import Counter
@@ -93,3 +93,13 @@ def summarize_movie_taste() -> str:
 
     watched_titles = [m['Name'] for m in watched_cache]
     return explain_recommendations(watched_titles, recommended_cache)
+
+@tool
+def fetch_trending_movies() -> List[dict]:
+    """Fetch trending (most watched) movies from Emby."""
+    return get_trending_movies(EMBY_SERVER, EMBY_API_KEY)
+
+@tool
+def fetch_recent_movies() -> List[dict]:
+    """Fetch recently released movies from Emby."""
+    return get_recent_movies(EMBY_SERVER, EMBY_API_KEY)

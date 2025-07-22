@@ -4,7 +4,15 @@ from dotenv import load_dotenv
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
-from movie_tools import fetch_watched_movies, recommend_movies, summarize_movie_taste
+from movie_tools import fetch_watched_movies, recommend_movies, summarize_movie_taste, fetch_trending_movies, fetch_recent_movies
+
+tools = [
+    fetch_watched_movies,
+    recommend_movies,
+    summarize_movie_taste,
+    fetch_trending_movies,
+    fetch_recent_movies
+]
 
 load_dotenv()
 
@@ -18,7 +26,7 @@ llm = ChatGoogleGenerativeAI(
     temperature=0.6
 )
 
-tools = [fetch_watched_movies, recommend_movies, summarize_movie_taste]
+tools = [fetch_watched_movies, recommend_movies, summarize_movie_taste, fetch_trending_movies, fetch_recent_movies]
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a movie taste analysis assistant. Use the tools to fetch watched movies from Emby, get taste-based recommendations from Qloo based on both the previously watched global movies as well as the location, and summarize how well the recommendations match the user's taste."),
