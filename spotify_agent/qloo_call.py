@@ -135,6 +135,7 @@ def get_insights(entity_ids: list):
         return response.json()
     except requests.exceptions.RequestException as e:
         return {"error": f"API request failed: {e}"}
+    
     except Exception as e:
         return {"error": str(e)}
 
