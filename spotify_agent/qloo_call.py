@@ -43,7 +43,7 @@ def get_entity_id(tracks: TrackRequest):
         for track in track_list:
             artist_tags.extend(track.get("artists", []))
 
-        # Clean, deduplicate, and URL-safe format
+      
         unique_tags = list(set(artist_tags))
         tag_string = ",".join(unique_tags)
 
@@ -81,7 +81,7 @@ def get_artist_entity_id(names:list):
         data = response.json()
         if data and 'results' in data:
             for result in data['results']:
-                # Check for an exact name match (case-insensitive)
+               
                 if result.get('name', '').lower() == name.lower():
                     artist_info = {
                         'name': result.get('name'),
@@ -118,7 +118,7 @@ def get_artist_entity_id(names:list):
                             elif tag.get('type') == 'urn:tag:subgenre:qloo':
                                 artist_info['subgenres'].append(tag.get('name'))
                     artist_id.append(artist_info)
-                    break # Move to the next name after finding a match
+                    break 
     with open("artist_entity_id_.json",'w') as f:
         json.dump(artist_id,f)
     return artist_id
@@ -138,7 +138,7 @@ def get_insights(entity_ids: list):
         response.raise_for_status()
         data = response.json()
         with open("insights.json",'w')as f:
-            json.dump(data,f)  # Raise an exception for bad status codes
+            json.dump(data,f) 
         return response.json()
     except requests.exceptions.RequestException as e:
         return {"error": f"API request failed: {e}"}
