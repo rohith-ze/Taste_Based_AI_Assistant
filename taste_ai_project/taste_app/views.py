@@ -1,7 +1,8 @@
 import random
 from django.shortcuts import render
-from .movie_tools import fetch_movies_for_view
+from .movie_tools import fetch_movies_for_view, fetch_recent_releases , fetch_trending_movies
 from .emby_utils import get_trending_movies, get_popular_movies, get_user_id
+
 import os
 
 def get_base_context():
@@ -51,7 +52,7 @@ def music_view(request):
     context = {"music": music_data}
     return render(request, "music.html", context)
 
-from movie_tools import fetch_trending_movies, fetch_recent_movies
+
 
 def trending_movies(request):
     movies = fetch_trending_movies({})
