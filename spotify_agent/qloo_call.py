@@ -14,6 +14,7 @@ BASE_URL ="https://hackathon.api.qloo.com/v2/insights/"
 BASE_URL_1 ="https://hackathon.api.qloo.com/search"
 
 from typing import TypedDict, List
+from pydantic import BaseModel, Field
 
 class Track(TypedDict):
     track_name: str
@@ -22,8 +23,14 @@ class Track(TypedDict):
 class TrackRequest(TypedDict):
     tracks: List[Track]
 
+class ArtistNames(BaseModel):
+    names: List[str] = Field(description="List of artist names")
+
+class EntityIds(BaseModel):
+    entity_ids: List[str] = Field(description="List of entity IDs")
+
 @tool
-def get_qloo_recommendations(tracks: TrackRequest):
+def get_entity_id(tracks: TrackRequest):
     """
     Fetches music recommendations from Qloo based on artist names from a list of Spotify tracks.
     Expects a TrackRequest object containing a list of tracks.
@@ -57,7 +64,7 @@ def get_qloo_recommendations(tracks: TrackRequest):
         return {"error": str(e)}
 
 
-@tool
+@tool(args_schema=ArtistNames)
 def get_artist_entity_id(names:list):
     """Gets the entity ID for the specified artists."""
     headers={'x-api-key':QLOO_API_KEY}
@@ -116,7 +123,7 @@ def get_artist_entity_id(names:list):
         json.dump(artist_id,f)
     return artist_id
 
-@tool
+@tool(args_schema=EntityIds)
 def get_insights(entity_ids: list):
     """Gets insights from Qloo API using a list of entity IDs."""
     headers = {"x-api-key": QLOO_API_KEY}
@@ -140,7 +147,7 @@ def get_insights(entity_ids: list):
         return {"error": str(e)}
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     # Test case for get_artist_entity_id
     artist_names = ["Taylor Swift", "Ed Sheeran"]
     artist_info_list = get_artist_entity_id({"names": artist_names})
@@ -158,4 +165,4 @@ if __name__ == "__main__":
             insights_result = get_insights({"entity_ids": entity_ids})
             print(json.dumps(insights_result, indent=2))
         else:
-            print("\nCould not find entity IDs to fetch insights.")
+            print("\nCould not find entity IDs to fetch insights.")"""
