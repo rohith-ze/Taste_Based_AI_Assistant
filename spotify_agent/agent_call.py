@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
-from data_gathering import get_playlist, get_last_played, get_song_list, get_liked_songs
-from qloo_call import get_artist_entity_id,get_insights
+from .data_gathering import get_playlist, get_last_played, get_song_list, get_liked_songs
+from .qloo_call import get_artist_entity_id,get_insights
 from langchain.memory import ConversationBufferMemory
 
 
@@ -13,7 +13,7 @@ from langchain.memory import ConversationBufferMemory
 load_dotenv()
 
 # Get the API key from environment variables
-api_key = os.getenv("GOOGLE_API_KEY")
+api_key = os.getenv("GEMINI_API_KEY")
 
 # Check if the API key is available
 if not api_key:

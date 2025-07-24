@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
-from movie_tools import fetch_watched_movies, recommend_movies, summarize_movie_taste, fetch_trending_movies, fetch_recent_movies
+from movie_agent._movie_tools import fetch_watched_movies, recommend_movies, summarize_movie_taste, fetch_trending_movies, fetch_recent_movies
 
 tools = [
     fetch_watched_movies,

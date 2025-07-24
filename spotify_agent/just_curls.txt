@@ -3,7 +3,7 @@
 to get entity id
 curl --request GET \
      --url 'https://hackathon.api.qloo.com/search?query=Beyonce&types=urn%3Aentity%3Aartist&filter.popularity=0.9&operator.filter.tags=union&page=1&sort_by=match' \ 
-     --header 'X-Api-Key: ZBv3Jg6HyzqK515JvxpkERJWJ_BbRXblNMYKITm-2UA' \
+     --header 'X-Api-Key: ' \
      --header 'accept: application/json'
 
 ----------
@@ -17,14 +17,13 @@ to get analysis with entity id
 
 curl --request GET \                                  
      --url 'https://hackathon.api.qloo.com/analysis?entity_ids=4BBEF799-A0C4-4110-AB01-39216993C312&page=1&take=20' \
-     --header 'X-Api-Key: ZBv3Jg6HyzqK515JvxpkERJWJ_BbRXblNMYKITm-2UA' \
+     --header 'X-Api-Key: ' \
      --header 'accept: application/json' 
 
 
 --------------------------------
 insights
-
 curl --request GET \
-     --url 'https://staging.api.qloo.com/v2/insights?filter.type=urn%3Aentity%3Aartist&signal.interests.entities=4BBEF799-A0C4-4110-AB01-39216993C312' \
-     --header 'X-Api-Key: pppp-2UA' \
-     --header 'accept: application/json'
+     --url 'https://hackathon.api.qloo.com/v2/insights?filter.type=urn%3Aentity%3Aartist&signal.interests.entities=058B79A3-49F5-4927-9AB6-DE713C706796%2C4BBEF799-A0C4-4110-AB01-39216993C312' \
+     --header 'X-Api-Key: ' \
+     --header 'accept: application/json' 
