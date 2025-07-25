@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import requests
 import json
 from langchain_core.tools import tool
-from .auth import get_access_token
+from auth import get_access_token
 import pydantic_core
 
 
