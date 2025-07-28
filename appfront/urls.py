@@ -16,8 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from appfront import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('chat.urls')),
+    path('', views.gemini_index, name='gemini_index'),
+    path('chat/', include('chat.urls')),
+    path('movie_agent_chat/', views.movie_agent_chat, name='movie_agent_chat'),
+    path('api/movie_agent_chat/', views.movie_agent_api, name='movie_agent_api'),
+    path('spotify_agent_chat/', views.spotify_agent_chat, name='spotify_agent_chat'),
+    path('api/spotify_agent_chat/', views.spotify_agent_api, name='spotify_agent_api'),
 ]

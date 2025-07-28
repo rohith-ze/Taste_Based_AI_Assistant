@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Agent - Gemini AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/gemini_style.css">
+</head>
+<body>
+    <div class="container">
+        <span>Spotify Agent</span>
+        <div class="chat-interface">
+            <div class="messages" id="messages">
+                <div class="message bot-message">
+                    <p>Hello! I am the Spotify Agent. How can I help you with music today?</p>
+                </div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="chatInput" placeholder="Ask me about music...">
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('sendButton').addEventListener('click', sendMessage);
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        async function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const messagesDiv = document.getElementById('messages');
+            const userMessageText = chatInput.value.trim();
+
+            if (userMessageText) {
+                // Display user message
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.classList.add('message', 'user-message');
+                userMessageDiv.innerHTML = `<p>${userMessageText}</p>`;
+                messagesDiv.appendChild(userMessageDiv);
+                chatInput.value = '';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+                // Send message to backend API
+                try {
+                    const response = await fetch('/api/spotify_agent_chat/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: userMessageText }),
+                    });
+
+                    const data = await response.json();
+
+                    // Display bot response
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.classList.add('message', 'bot-message');
+                    
+                    const responseText = data.response;
+                    let formattedHtml = '';
+
+                    if (responseText.includes('Recommended Artists:')) {
+                        const parts = responseText.split('Recommended Artists:');
+                        formattedHtml += `<p>${parts[0].trim()}</p>`; // Text before recommendations
+
+                        const recommendations = parts[1];
+                        const artistSection = recommendations.split('Recommended Genres:')[0];
+                        const genreSection = recommendations.includes('Recommended Genres:') ? recommendations.split('Recommended Genres:')[1].split('Recommended Themes:')[0] : '';
+                        const themeSection = recommendations.includes('Recommended Themes:') ? recommendations.split('Recommended Themes:')[1] : '';
+
+                        // Artists
+                        formattedHtml += `<h4>Recommended Artists:</h4><ul>`;
+                        const artistMatches = [...artistSection.matchAll(/\*\*([^\*]+?)\]\(([^\)]+?)\)\*\*(?:\s*:\s*(.*))?/g)];
+                        artistMatches.forEach(match => {
+                            const artistName = match[1].trim();
+                            const imageUrl = match[2];
+                            const description = match[3] ? `: ${match[3].trim()}` : '';
+                            formattedHtml += `<li><img src="${imageUrl}" alt="${artistName}" style="width:50px;height:50px;border-radius:50%;margin-right:10px;"><strong>${artistName}</strong>${description}</li>`;
+                        });
+                        formattedHtml += `</ul>`;
+
+                        // Genres
+                        if (genreSection.trim()) {
+                            formattedHtml += `<h4>Recommended Genres:</h4><ul>`;
+                            genreSection.split('*').filter(s => s.trim()).forEach(genre => {
+                                formattedHtml += `<li>${genre.trim()}</li>`;
+                            });
+                            formattedHtml += `</ul>`;
+                        }
+
+                        // Themes
+                        if (themeSection.trim()) {
+                            formattedHtml += `<h4>Recommended Themes:</h4><ul>`;
+                            themeSection.split('*').filter(s => s.trim()).forEach(theme => {
+                                formattedHtml += `<li>${theme.trim()}</li>`;
+                            });
+                            formattedHtml += `</ul>`;
+                        }
+
+                    } else {
+                        formattedHtml = `<p>${responseText}</p>`;
+                    }
+
+                    botMessageDiv.innerHTML = formattedHtml;
+                    messagesDiv.appendChild(botMessageDiv);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                    const errorMessageDiv = document.createElement('div');
+                    errorMessageDiv.classList.add('message', 'bot-message');
+                    errorMessageDiv.innerHTML = `<p>Error: Could not get a response from the Spotify Agent.</p>`;
+                    messagesDiv.appendChild(errorMessageDiv);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/gemini_style.css">
+</head>
+<body class="homepage">
+    <div class="container">
+        <h1>How can I help you today?</h1>
+        
+        <div class="button-container">
+            <button class="agent-button" id="movieAgentButton">
+                <img src="https://www.gstatic.com/images/icons/material/system/2x/movie_filter_gm_grey_24dp.png" alt="Movie Icon">
+                <span>Invoke Movie Agent</span>
+            </button>
+            <button class="agent-button" id="spotifyAgentButton">
+                <img src="https://www.gstatic.com/images/icons/material/system/2x/music_note_gm_grey_24dp.png" alt="Music Icon">
+                <span>Invoke Spotify Agent</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('movieAgentButton').addEventListener('click', function() {
+            window.location.href = '/movie_agent_chat'; // Redirect to movie agent chat page
+        });
+
+        document.getElementById('spotifyAgentButton').addEventListener('click', function() {
+            window.location.href = '/spotify_agent_chat'; // Redirect to spotify agent chat page
+        });
+
+        // Basic chat functionality (for demonstration)
+        document.getElementById('sendButton').addEventListener('click', sendMessage);
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const messagesDiv = document.getElementById('messages');
+            const userMessageText = chatInput.value.trim();
+
+            if (userMessageText) {
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.classList.add('message', 'user-message');
+                userMessageDiv.innerHTML = `<p>${userMessageText}</p>`;
+                messagesDiv.appendChild(userMessageDiv);
+                chatInput.value = '';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to bottom
+
+                // Simulate a bot response (for demonstration)
+                setTimeout(() => {
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.classList.add('message', 'bot-message');
+                    botMessageDiv.innerHTML = `<p>You said: ${userMessageText}</p>`;
+                    messagesDiv.appendChild(botMessageDiv);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>

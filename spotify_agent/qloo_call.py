@@ -139,7 +139,30 @@ def get_insights(entity_ids: list):
         data = response.json()
         with open("insights.json",'w')as f:
             json.dump(data,f) 
-        return response.json()
+        
+        # Extract relevant information from the insights data
+        insights_summary = {
+            "recommended_artists": [],
+            "recommended_genres": [],
+            "recommended_themes": []
+        }
+
+        if "results" in data and "entities" in data["results"]:
+            for entity in data["results"]["entities"]:
+                insights_summary["recommended_artists"].append({
+                    "name": entity.get("name"),
+                    "entity_id": entity.get("entity_id"),
+                    "image_url": entity.get("properties", {}).get("image", {}).get("url")
+                })
+        
+        if "results" in data and "tags" in data["results"]:
+            for tag in data["results"]["tags"]:
+                if tag.get("type") == "urn:tag:genre":
+                    insights_summary["recommended_genres"].append(tag.get("name"))
+                elif tag.get("type") == "urn:tag:theme":
+                    insights_summary["recommended_themes"].append(tag.get("name"))
+
+        return insights_summary
     except requests.exceptions.RequestException as e:
         return {"error": f"API request failed: {e}"}
     
@@ -147,7 +170,7 @@ def get_insights(entity_ids: list):
         return {"error": str(e)}
 
 
-"""if __name__ == "__main__":
+if __name__ == "__main__":
     # Test case for get_artist_entity_id
     artist_names = ["Taylor Swift", "Ed Sheeran"]
     artist_info_list = get_artist_entity_id({"names": artist_names})
@@ -165,4 +188,4 @@ def get_insights(entity_ids: list):
             insights_result = get_insights({"entity_ids": entity_ids})
             print(json.dumps(insights_result, indent=2))
         else:
-            print("\nCould not find entity IDs to fetch insights.")"""
+            print("\nCould not find entity IDs to fetch insights.")

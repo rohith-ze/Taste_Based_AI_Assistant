@@ -47,6 +47,7 @@ def get_watched_movies(emby_server, api_key, user_id):
 
     try:
         res = requests.get(url, params=params)
+        res.raise_for_status()  # Raise an exception for bad status codes
         data = res.json()
         with open("get_watched_movies.json",'w')as f:
             json.dump(data,f)
@@ -55,17 +56,16 @@ def get_watched_movies(emby_server, api_key, user_id):
             print("[DEBUG] Response:", res.text[:200])
             return []
 
-        if res.status_code != 200:
-            print("[ERROR] Emby API failed:", res.status_code)
-            print("[DEBUG] URL:", res.url)
-            print("[DEBUG] Response:", res.text[:200])
-            return []
-
-        data = json.loads(res.content.decode('utf-8-sig'))
         movies = data.get('Items', [])
+        if not movies:
+            print("[INFO] No watched movies found in Emby.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"[ERROR] Emby API request failed: {e}")
+        return []
     except json.JSONDecodeError as e:
-        print("[ERROR] Failed to parse JSON:", e)
-        print("[DEBUG] Raw response:", res.content[:200])
+        print(f"[ERROR] Failed to parse JSON: {e}")
+        print(f"[DEBUG] Raw response: {res.content[:200]}")
         return []
 
     return [{

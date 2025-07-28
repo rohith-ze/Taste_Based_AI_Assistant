@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Agent - Gemini AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/gemini_style.css">
+</head>
+<body>
+    <div class="container">
+        <span>Movie Agent</span>
+        <div class="chat-interface">
+            <div class="messages" id="messages">
+                <div class="message bot-message">
+                    <p>Hello! I am the Movie Agent. How can I help you with movies today?</p>
+                </div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="chatInput" placeholder="Ask me about movies...">
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('sendButton').addEventListener('click', sendMessage);
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        async function sendMessage() {
+            console.log('sendMessage function called');
+            const chatInput = document.getElementById('chatInput');
+            const messagesDiv = document.getElementById('messages');
+            const userMessageText = chatInput.value.trim();
+
+            if (userMessageText) {
+                // Display user message
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.classList.add('message', 'user-message');
+                userMessageDiv.innerHTML = `<p>${userMessageText}</p>`;
+                messagesDiv.appendChild(userMessageDiv);
+                chatInput.value = '';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+                // Send message to backend API
+                try {
+                    const response = await fetch('/api/movie_agent_chat/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: userMessageText }),
+                    });
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('HTTP error! status:', response.status, response.statusText, errorText);
+                        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+                    }
+
+                    const data = await response.json();
+
+                    // Display bot response
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.classList.add('message', 'bot-message');
+                    const responseText = data.response;
+                    let formattedHtml = '';
+
+                    if (responseText.includes("I recommend checking out these movies:")) {
+                        const parts = responseText.split("I recommend checking out these movies:");
+                        formattedHtml += `<p>${parts[0].trim()}</p>`; // Text before recommendations
+
+                        const movieSection = parts[1].split("Is there anything specific you're looking for,")[0];
+                        const movies = movieSection.split(',').map(movie => movie.trim()).filter(movie => movie !== '');
+
+                        formattedHtml += `<h4>Recommended Movies:</h4><ul>`;
+                        movies.forEach(movie => {
+                            formattedHtml += `<li>${movie}</li>`;
+                        });
+                        formattedHtml += `</ul>`;
+
+                        if (responseText.includes("Is there anything specific you're looking for,")) {
+                            formattedHtml += `<p>${responseText.split("Is there anything specific you're looking for,")[1].trim()}</p>`;
+                        }
+
+                    } else {
+                        formattedHtml = `<p>${responseText}</p>`;
+                    }
+
+                    botMessageDiv.innerHTML = formattedHtml;
+                    messagesDiv.appendChild(botMessageDiv);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                    const errorMessageDiv = document.createElement('div');
+                    errorMessageDiv.classList.add('message', 'bot-message');
+                    errorMessageDiv.innerHTML = `<p>Error: Could not get a response from the Movie Agent.</p>`;
+                    messagesDiv.appendChild(errorMessageDiv);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

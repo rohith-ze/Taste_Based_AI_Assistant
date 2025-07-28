@@ -11,7 +11,7 @@ load_dotenv()
 
 EMBY_SERVER = os.getenv("EMBY_SERVER")
 EMBY_API_KEY = os.getenv("EMBY_API_KEY")
-USER_NAME = os.getenv("USER_NAME")
+USER_NAME = os.getenv("EMBY_USER")
 USER_LOCATION = os.getenv("USER_LOCATION", "India")  # loaded from .env
 
 # Cache
@@ -19,6 +19,8 @@ watched_cache = []
 recommended_cache = []
 
 def _fetch_movies():
+    if not all([EMBY_SERVER, EMBY_API_KEY, USER_NAME]):
+        return {"error": "EMBY_SERVER, EMBY_API_KEY, and USER_NAME must be set in the .env file."}
     user_id = get_user_id(EMBY_SERVER, EMBY_API_KEY, USER_NAME)
     if not user_id:
         print("[ERROR] Could not fetch user ID.")
@@ -46,6 +48,8 @@ def fetch_watched_movies() -> List[dict]:
     """Fetch the recently watched movies from Emby."""
     global watched_cache
     watched_cache = _fetch_movies()
+    if isinstance(watched_cache, dict) and 'error' in watched_cache:
+        return watched_cache
     return [{"Name": m["Name"], "Genres": m["Genres"]} for m in watched_cache]
 
 @tool
@@ -90,6 +94,8 @@ def summarize_movie_taste() -> str:
     global watched_cache, recommended_cache
     if not watched_cache:
         watched_cache = _fetch_movies()
+    if isinstance(watched_cache, dict) and 'error' in watched_cache:
+        return watched_cache['error']
 
     watched_titles = [m['Name'] for m in watched_cache]
     return explain_recommendations(watched_titles, recommended_cache)
