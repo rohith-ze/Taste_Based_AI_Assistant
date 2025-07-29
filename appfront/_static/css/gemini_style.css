@@ -210,11 +210,12 @@ h1 {
 }
 
 .artist-card, .movie-card {
-    background-color: #f0f0f0;
+    background-color: #1f1f1f;
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
     width: 150px;
+    color: #e0e0e0;
 }
 
 .artist-card img, .movie-card img {
@@ -227,6 +228,7 @@ h1 {
 .artist-card p, .movie-card p {
     font-weight: bold;
     margin: 0;
+    color: #e0e0e0;
 }
 
 .message p {
