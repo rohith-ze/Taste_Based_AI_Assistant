@@ -7,7 +7,9 @@ from .gemini_utils import explain_recommendations
 from dotenv import load_dotenv
 from collections import Counter
 
-load_dotenv()
+script_dir = os.path.dirname(os.path.abspath(__file__))
+dotenv_path = os.path.join(script_dir, '.env')
+load_dotenv(dotenv_path="/home/rohith/github/Taste_Based_AI_Assistant-2/movie_agent/.env")
 
 EMBY_SERVER = os.getenv("EMBY_SERVER")
 EMBY_API_KEY = os.getenv("EMBY_API_KEY")

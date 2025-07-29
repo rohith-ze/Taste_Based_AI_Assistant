@@ -14,14 +14,16 @@ tools = [
     fetch_recent_movies
 ]
 
-load_dotenv()
+script_dir = os.path.dirname(os.path.abspath(__file__))
+dotenv_path = os.path.join(script_dir, '.env')
+load_dotenv(dotenv_path=dotenv_path)
 
 GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GOOGLE_API_KEY:
     raise ValueError("GEMINI_API_KEY not found in .env")
 
 llm = ChatGoogleGenerativeAI(
-    model="models/gemini-1.5-flash",
+    model="models/gemini-2.0-flash-lite",
     google_api_key=GOOGLE_API_KEY,
     temperature=0.6
 )
@@ -40,15 +42,18 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 if __name__ == "__main__":
     # First, fetch watched movies to find the most common genre
     watched_movies = fetch_watched_movies.invoke({})
-    if watched_movies:
-        all_genres = [genre for m in watched_movies for genre in m.get('Genres', [])]
-        if all_genres:
-            most_common_genre = max(set(all_genres), key=all_genres.count)
+    if isinstance(watched_movies, dict) and 'error' in watched_movies:
+        print(f"[ERROR] {watched_movies['error']}")
+    else:
+        if watched_movies:
+            all_genres = [genre for m in watched_movies for genre in m.get('Genres', [])]
+            if all_genres:
+                most_common_genre = max(set(all_genres), key=all_genres.count)
+            else:
+                most_common_genre = 'comedy'  # Default genre
         else:
             most_common_genre = 'comedy'  # Default genre
-    else:
-        most_common_genre = 'comedy'  # Default genre
 
-    question = f"What kind of movies do I like based on my Emby history, and are the Qloo recommendations for '{most_common_genre}' a good fit?"
-    result = agent_executor.invoke({"input": question})
-    print("\n🎯 Agent Response:\n", result["output"])
+        question = f"What kind of movies do I like based on my Emby history, and are the Qloo recommendations for '{most_common_genre}' a good fit?"
+        result = agent_executor.invoke({"input": question})
+        print("\n🎯 Agent Response:\n", result["output"])
