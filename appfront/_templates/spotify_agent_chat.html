@@ -54,6 +54,12 @@
                         body: JSON.stringify({ message: userMessageText }),
                     });
 
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('HTTP error!', response.status, errorText);
+                        throw new Error(`Server error: ${response.status}`);
+                    }
+
                     const data = await response.json();
 
                     // Display bot response
@@ -63,20 +69,16 @@
                     const responseText = data.response;
                     let formattedHtml = '';
 
-                    if (responseText.includes('**Recommended Artists:**')) {
-                        const parts = responseText.split('**Recommended Artists:**');
-                        const summaryText = responseText.substring(responseText.lastIndexOf("Finished chain.") + "Finished chain.".length).trim();
-                        formattedHtml += `<p>${summaryText}</p>`;
+                    const artistRegex = /\*\s+\*\*([^*]+)\*\*\s+\(\[Image URL\]\(([^)]+)\)\)/g;
+                    
+                    if (responseText.match(artistRegex)) {
+                        const introText = responseText.split(/\*\s+\*\*/)[0];
+                        if (introText) {
+                            formattedHtml += `<p>${introText.trim()}</p>`;
+                        }
 
-
-                        const recommendations = parts[1];
-                        const artistSection = recommendations.split('**Recommended Genres:**')[0];
-                        const genreSection = recommendations.includes('**Recommended Genres:**') ? recommendations.split('**Recommended Genres:**')[1].split('**Recommended Themes:**')[0] : '';
-                        const themeSection = recommendations.includes('**Recommended Themes:**') ? recommendations.split('**Recommended Themes:**')[1] : '';
-
-                        // Artists
-                        formattedHtml += `<div class="artist-recommendations">`;
-                        const artistMatches = [...artistSection.matchAll(/\*\s+\*\*([^*]+)\*\*\s+\(\[Image URL\]\(([^)]+)\)\)/g)];
+                        formattedHtml += `<h4>Recommended Artists:</h4><div class="artist-recommendations">`;
+                        const artistMatches = [...responseText.matchAll(artistRegex)];
                         artistMatches.forEach(match => {
                             const artistName = match[1].trim();
                             const imageUrl = match[2];
@@ -86,24 +88,6 @@
                                              </div>`;
                         });
                         formattedHtml += `</div>`;
-
-                        // Genres
-                        if (genreSection.trim() && !genreSection.includes("No genres were recommended")) {
-                            formattedHtml += `<h4>Recommended Genres:</h4><ul>`;
-                            genreSection.split('*').filter(s => s.trim()).forEach(genre => {
-                                formattedHtml += `<li>${genre.trim()}</li>`;
-                            });
-                            formattedHtml += `</ul>`;
-                        }
-
-                        // Themes
-                        if (themeSection.trim()) {
-                            formattedHtml += `<h4>Recommended Themes:</h4><ul>`;
-                            themeSection.split('*').filter(s => s.trim()).forEach(theme => {
-                                formattedHtml += `<li>${theme.trim()}</li>`;
-                            });
-                            formattedHtml += `</ul>`;
-                        }
 
                     } else {
                         formattedHtml = `<p>${responseText}</p>`;
