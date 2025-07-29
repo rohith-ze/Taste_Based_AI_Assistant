@@ -83,12 +83,32 @@ def recommend_movies() -> List[str]:
     seen = set()
     merged = []
     for movie in taste_based + location_based:
-        if movie not in seen:
-            seen.add(movie)
-            merged.append(movie)
+        # Ensure movie is a dictionary and has a 'name' key
+        if isinstance(movie, dict) and 'name' in movie:
+            movie_name = movie['name']
+            if movie_name not in seen:
+                seen.add(movie_name)
+                merged.append(movie)
+        elif isinstance(movie, str):
+            # Handle case where movie is just a string name
+            if movie not in seen:
+                seen.add(movie)
+                # Create a dictionary structure to be consistent
+                merged.append({'name': movie, 'image_url': None})  # No image URL available
 
     recommended_cache = merged
-    return merged
+    
+    # Format the output to include markdown for images
+    formatted_recommendations = []
+    for movie in merged:
+        movie_name = movie.get('name')
+        image_url = movie.get('image_url')
+        if image_url:
+            formatted_recommendations.append(f"* **{movie_name}** ([Image URL]({image_url}))")
+        else:
+            formatted_recommendations.append(f"* **{movie_name}**")
+            
+    return formatted_recommendations
 
 @tool
 def summarize_movie_taste() -> str:

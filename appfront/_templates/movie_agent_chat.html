@@ -69,18 +69,23 @@
                     const responseText = data.response;
                     let formattedHtml = '';
 
-                    if (responseText.includes("I recommend checking out these movies:")) {
-                        const parts = responseText.split("I recommend checking out these movies:");
+                    if (responseText.includes("**Recommended Movies:**")) {
+                        const parts = responseText.split("**Recommended Movies:**");
                         formattedHtml += `<p>${parts[0].trim()}</p>`; // Text before recommendations
 
                         const movieSection = parts[1].split("Is there anything specific you're looking for,")[0];
-                        const movies = movieSection.split(',').map(movie => movie.trim()).filter(movie => movie !== '');
-
-                        formattedHtml += `<h4>Recommended Movies:</h4><ul>`;
-                        movies.forEach(movie => {
-                            formattedHtml += `<li>${movie}</li>`;
+                        
+                        formattedHtml += `<h4>Recommended Movies:</h4><div class="movie-recommendations">`;
+                        const movieMatches = [...movieSection.matchAll(/\*\s+\*\*([^*]+)\*\*\s+\(\[Image URL\]\(([^)]+)\)\)/g)];
+                        movieMatches.forEach(match => {
+                            const movieName = match[1].trim();
+                            const imageUrl = match[2];
+                            formattedHtml += `<div class="movie-card">
+                                                <img src="${imageUrl}" alt="${movieName}">
+                                                <p>${movieName}</p>
+                                             </div>`;
                         });
-                        formattedHtml += `</ul>`;
+                        formattedHtml += `</div>`;
 
                         if (responseText.includes("Is there anything specific you're looking for,")) {
                             formattedHtml += `<p>${responseText.split("Is there anything specific you're looking for,")[1].trim()}</p>`;

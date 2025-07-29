@@ -103,7 +103,16 @@ def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None)
         if res.status_code == 200:
             results = res.json().get("results", {})
             entities = results.get("entities", [])
-            return [e.get("name") for e in entities if e.get("name")]
+            
+            # Extract name and image URL
+            movies_with_images = []
+            for e in entities:
+                name = e.get("name")
+                image_url = e.get("properties", {}).get("image", {}).get("url")
+                if name:
+                    movies_with_images.append({"name": name, "image_url": image_url})
+            
+            return movies_with_images
         else:
             print("[❌] Qloo Insights API failed:", res.status_code)
             print(res.text)

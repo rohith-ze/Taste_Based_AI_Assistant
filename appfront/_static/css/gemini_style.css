@@ -202,27 +202,31 @@ h1 {
     text-align: left; /* Ensure list items are left-aligned */
 }
 
-.artist-recommendations {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 20px;
-    justify-content: center;
+.artist-recommendations, .movie-recommendations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-.artist-card {
+.artist-card, .movie-card {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 1rem;
     text-align: center;
-    width: 120px;
+    width: 150px;
 }
 
-.artist-card img {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
+.artist-card img, .movie-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
 }
 
-.artist-card p {
-    margin-top: 5px;
+.artist-card p, .movie-card p {
     font-weight: bold;
+    margin: 0;
 }
 
 .message p {
