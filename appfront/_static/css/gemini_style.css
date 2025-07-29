@@ -197,10 +197,32 @@ h1 {
 }
 
 .bot-message li {
-    display: flex;
     align-items: center;
     margin-bottom: 5px;
     text-align: left; /* Ensure list items are left-aligned */
+}
+
+.artist-recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.artist-card {
+    text-align: center;
+    width: 120px;
+}
+
+.artist-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.artist-card p {
+    margin-top: 5px;
+    font-weight: bold;
 }
 
 .message p {

@@ -147,22 +147,40 @@ def get_insights(entity_ids: list):
             "recommended_themes": []
         }
 
+        recommended_artists_str = ""
         if "results" in data and "entities" in data["results"]:
             for entity in data["results"]["entities"]:
-                insights_summary["recommended_artists"].append({
-                    "name": entity.get("name"),
-                    "entity_id": entity.get("entity_id"),
-                    "image_url": entity.get("properties", {}).get("image", {}).get("url")
-                })
-        
-        if "results" in data and "tags" in data["results"]:
-            for tag in data["results"]["tags"]:
-                if tag.get("type") == "urn:tag:genre":
-                    insights_summary["recommended_genres"].append(tag.get("name"))
-                elif tag.get("type") == "urn:tag:theme":
-                    insights_summary["recommended_themes"].append(tag.get("name"))
+                artist_name = entity.get("name")
+                image_url = entity.get("properties", {}).get("image", {}).get("url")
+                if artist_name and image_url:
+                    recommended_artists_str += f"* **{artist_name}** ([Image URL]({image_url}))\n"
 
-        return insights_summary
+        recommended_genres_str = ""
+        if "results" in data and "tags" in data["results"]:
+            genres = [tag.get("name") for tag in data["results"]["tags"] if tag.get("type") == "urn:tag:genre"]
+            if genres:
+                recommended_genres_str = "* " + "\n* ".join(genres)
+
+        recommended_themes_str = ""
+        if "results" in data and "tags" in data["results"]:
+            themes = [tag.get("name") for tag in data["results"]["tags"] if tag.get("type") == "urn:tag:theme"]
+            if themes:
+                recommended_themes_str = "* " + "\n* ".join(themes)
+
+        # Format the final output string
+        output_str = ""
+        if recommended_artists_str:
+            output_str += f"**Recommended Artists:**\n{recommended_artists_str}\n"
+        
+        if recommended_genres_str:
+            output_str += f"**Recommended Genres:**\n{recommended_genres_str}\n"
+        else:
+            output_str += "**Recommended Genres:**\nNo genres were recommended\n"
+            
+        if recommended_themes_str:
+            output_str += f"**Recommended Themes:**\n{recommended_themes_str}"
+
+        return output_str if output_str else "No recommendations found."
     except requests.exceptions.RequestException as e:
         return {"error": f"API request failed: {e}"}
     

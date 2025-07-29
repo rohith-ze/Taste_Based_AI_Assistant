@@ -63,28 +63,32 @@
                     const responseText = data.response;
                     let formattedHtml = '';
 
-                    if (responseText.includes('Recommended Artists:')) {
-                        const parts = responseText.split('Recommended Artists:');
-                        formattedHtml += `<p>${parts[0].trim()}</p>`; // Text before recommendations
+                    if (responseText.includes('**Recommended Artists:**')) {
+                        const parts = responseText.split('**Recommended Artists:**');
+                        const summaryText = responseText.substring(responseText.lastIndexOf("Finished chain.") + "Finished chain.".length).trim();
+                        formattedHtml += `<p>${summaryText}</p>`;
+
 
                         const recommendations = parts[1];
-                        const artistSection = recommendations.split('Recommended Genres:')[0];
-                        const genreSection = recommendations.includes('Recommended Genres:') ? recommendations.split('Recommended Genres:')[1].split('Recommended Themes:')[0] : '';
-                        const themeSection = recommendations.includes('Recommended Themes:') ? recommendations.split('Recommended Themes:')[1] : '';
+                        const artistSection = recommendations.split('**Recommended Genres:**')[0];
+                        const genreSection = recommendations.includes('**Recommended Genres:**') ? recommendations.split('**Recommended Genres:**')[1].split('**Recommended Themes:**')[0] : '';
+                        const themeSection = recommendations.includes('**Recommended Themes:**') ? recommendations.split('**Recommended Themes:**')[1] : '';
 
                         // Artists
-                        formattedHtml += `<h4>Recommended Artists:</h4><ul>`;
-                        const artistMatches = [...artistSection.matchAll(/\*\*([^\*]+?)\]\(([^\)]+?)\)\*\*(?:\s*:\s*(.*))?/g)];
+                        formattedHtml += `<div class="artist-recommendations">`;
+                        const artistMatches = [...artistSection.matchAll(/\*\s+\*\*([^*]+)\*\*\s+\(\[Image URL\]\(([^)]+)\)\)/g)];
                         artistMatches.forEach(match => {
                             const artistName = match[1].trim();
                             const imageUrl = match[2];
-                            const description = match[3] ? `: ${match[3].trim()}` : '';
-                            formattedHtml += `<li><img src="${imageUrl}" alt="${artistName}" style="width:50px;height:50px;border-radius:50%;margin-right:10px;"><strong>${artistName}</strong>${description}</li>`;
+                            formattedHtml += `<div class="artist-card">
+                                                <img src="${imageUrl}" alt="${artistName}">
+                                                <p>${artistName}</p>
+                                             </div>`;
                         });
-                        formattedHtml += `</ul>`;
+                        formattedHtml += `</div>`;
 
                         // Genres
-                        if (genreSection.trim()) {
+                        if (genreSection.trim() && !genreSection.includes("No genres were recommended")) {
                             formattedHtml += `<h4>Recommended Genres:</h4><ul>`;
                             genreSection.split('*').filter(s => s.trim()).forEach(genre => {
                                 formattedHtml += `<li>${genre.trim()}</li>`;
