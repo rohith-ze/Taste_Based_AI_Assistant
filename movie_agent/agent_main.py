@@ -4,12 +4,12 @@ from dotenv import load_dotenv
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
-from _movie_tools import fetch_watched_movies, recommend_movies, summarize_movie_taste, fetch_trending_movies, fetch_recent_movies
-from langchain.memory import ConversationBufferMemory
+from ._movie_tools import fetch_watched_movies, recommend_movies, summarize_movie_taste, fetch_trending_movies, fetch_recent_movies
 
 tools = [
     fetch_watched_movies,
     recommend_movies,
+    summarize_movie_taste,
     fetch_trending_movies,
     fetch_recent_movies
 ]
@@ -17,7 +17,7 @@ tools = [
 script_dir = os.path.dirname(os.path.abspath(__file__))
 dotenv_path = os.path.join(script_dir, '.env')
 load_dotenv(dotenv_path=dotenv_path)
-memory = ConversationBufferMemory(memory_key="chat_history",return_messages=True)
+
 GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GOOGLE_API_KEY:
     raise ValueError("GEMINI_API_KEY not found in .env")
@@ -28,26 +28,32 @@ llm = ChatGoogleGenerativeAI(
     temperature=0.6
 )
 
-tools = [fetch_watched_movies, 
-        recommend_movies, 
-        summarize_movie_taste,
-        fetch_trending_movies,
-        fetch_recent_movies
-    ]
-
-with open("/home/ajay/Documents/sleeping_dog_don/Taste_Based_AI_Assistant/movie_agent/system_prompt.txt", "r") as f:
-    system_prompt = f.read()
+tools = [fetch_watched_movies, recommend_movies, summarize_movie_taste, fetch_trending_movies, fetch_recent_movies]
 
 prompt = ChatPromptTemplate.from_messages([
-    ("system", system_prompt),
+    ("system", "You are a friendly Movie Agent, ready to talk all things cinema! I can chat with you about movies, genres, actors, or anything else related to films. If you want me to analyze your movie taste or provide recommendations, please explicitly ask me to do so. For example, you can say \"Recommend some movies for me\" or \"What kind of movies do I like?\"\n\nHere's how I can help with recommendations and taste analysis:\n\n- If the user asks for movie recommendations or taste analysis, first use the `fetch_watched_movies` tool to get their watched history from Emby. Then, use the `recommend_movies` tool to get taste-based recommendations from Qloo. The recommendations will be a list of markdown-formatted strings with movie titles and image URLs. You MUST present these recommendations to the user exactly as they are returned from the tool, under the heading '**Recommended Movies:**'. Do not reformat or change the list. Finally, use the `summarize_movie_taste` tool to summarize how well the recommendations match the user's taste.\n- If the user asks for trending movies, use the `fetch_trending_movies` tool.\n- If the user asks for recent movies, use the `fetch_recent_movies` tool.\n\nOtherwise, engage in general conversation about movies."),
     ("human", "{input}"),
     ("placeholder", "{agent_scratchpad}")
 ])
 
 agent = create_tool_calling_agent(llm=llm, tools=tools, prompt=prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True,memory=memory)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 if __name__ == "__main__":
-    question = "Recommend me some movies based on my watched history."
-    result = agent_executor.invoke({"input": question})
-    print("\n🎯 Agent Response:\n", result["output"])
+    # First, fetch watched movies to find the most common genre
+    watched_movies = fetch_watched_movies.invoke({})
+    if isinstance(watched_movies, dict) and 'error' in watched_movies:
+        print(f"[ERROR] {watched_movies['error']}")
+    else:
+        if watched_movies:
+            all_genres = [genre for m in watched_movies for genre in m.get('Genres', [])]
+            if all_genres:
+                most_common_genre = max(set(all_genres), key=all_genres.count)
+            else:
+                most_common_genre = 'comedy'  # Default genre
+        else:
+            most_common_genre = 'comedy'  # Default genre
+
+        question = f"What kind of movies do I like based on my Emby history, and are the Qloo recommendations for '{most_common_genre}' a good fit?"
+        result = agent_executor.invoke({"input": question})
+        print("\n🎯 Agent Response:\n", result["output"])

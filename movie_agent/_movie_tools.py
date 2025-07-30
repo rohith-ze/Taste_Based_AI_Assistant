@@ -2,8 +2,8 @@
 import os
 from typing import List
 from langchain.tools import tool
-from emby_utils import get_user_id, get_watched_movies, get_qloo_recommendations, get_trending_movies, get_recent_movies
-from gemini_utils import explain_recommendations, get_movie_genres
+from .emby_utils import get_user_id, get_watched_movies, get_qloo_recommendations, get_trending_movies, get_recent_movies
+from .gemini_utils import explain_recommendations
 from dotenv import load_dotenv
 from collections import Counter
 
@@ -55,11 +55,13 @@ def fetch_watched_movies() -> List[dict]:
     return [{"Name": m["Name"], "Genres": m["Genres"]} for m in watched_cache]
 
 @tool
-def recommend_movies(watched_movies: List[dict]) -> List[str]:
-    """Recommend movies using Qloo based on a list of watched movies."""
-    global recommended_cache
+def recommend_movies() -> List[str]:
+    """Recommend movies using Qloo based on both watched history and user location."""
+    global watched_cache, recommended_cache
+    if not watched_cache:
+        watched_cache = _fetch_movies()
 
-    genre_urn = _get_top_genre(watched_movies)
+    genre_urn = _get_top_genre(watched_cache)
     location = USER_LOCATION
     print(f"[🎯] Fetching recommendations by genre: {genre_urn} and location: {location}")
 
@@ -97,16 +99,14 @@ def recommend_movies(watched_movies: List[dict]) -> List[str]:
     recommended_cache = merged
     
     # Format the output to include markdown for images
-    formatted_recommendations = ["**Recommended Movies**"]
+    formatted_recommendations = []
     for movie in merged:
         movie_name = movie.get('name')
         image_url = movie.get('image_url')
-        genres = get_movie_genres(movie_name)
-        genre_str = ", ".join(genres) if genres else "Unknown"
         if image_url:
-            formatted_recommendations.append(f"{movie_name} - {genre_str} - ([Image URL]({image_url}))")
+            formatted_recommendations.append(f"* **{movie_name}** ([Image URL]({image_url}))")
         else:
-            formatted_recommendations.append(f"{movie_name} - {genre_str} - (No image URL)")
+            formatted_recommendations.append(f"* **{movie_name}**")
             
     return formatted_recommendations
 

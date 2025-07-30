@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 import requests
 import json
 from langchain_core.tools import tool
+from .auth import get_access_token
 import pydantic_core
-from auth import get_access_token
 
 
 TOKEN = get_access_token()
@@ -47,7 +47,7 @@ def get_last_played():
     data = response.json()
 
     if 'items' not in data:
-        return json.dumps({"tracks": []})  # Return empty but valid JSON
+        return json.dumps([])  # Return empty but valid JSON
 
     tracks = []
     for item in data['items']:
@@ -62,7 +62,7 @@ def get_last_played():
             "release_date": track.get('album', {}).get('release_date', "Unknown")
         })
 
-    return json.dumps({"tracks": tracks}, ensure_ascii=False)  # Proper JSON string
+    return json.dumps(tracks, indent=2)  # Proper JSON string
 
 @tool
 def get_song_list(playlist_ID:str) :
@@ -126,27 +126,3 @@ def get_liked_songs():
             "release_date": release_date,
         })
     return json.dumps(parsed_tracks, indent=2)
-
-
-@tool
-def get_liked_song_names():
-    """Fetches the user's liked songs from Spotify and returns only the song names."""
-    url = "https://api.spotify.com/v1/me/tracks?limit=50"
-    headers = {"Authorization": f"Bearer {TOKEN}"}
-    response = requests.get(url, headers=headers)
-    data = response.json()
-
-    if 'items' not in data:
-        return []
-
-    track_names = []
-    for item in data['items']:
-        track = item.get('track', {})
-        if not track:
-            continue
-        track_names.append(track.get('name'))
-    return json.dumps(track_names, indent=2)
-
-if __name__ == "__main__":
-    print("-----song----list-----")
-    print(get_song_list("0qYVoEVgiCjbnWEDZ72WsH"))

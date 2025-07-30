@@ -23,90 +23,108 @@
     </div>
 
     <script>
-        document.getElementById('sendButton').addEventListener('click', sendMessage);
-        document.getElementById('chatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
+    document.getElementById('sendButton').addEventListener('click', sendMessage);
+    document.getElementById('chatInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
 
-        async function sendMessage() {
-            const chatInput = document.getElementById('chatInput');
-            const messagesDiv = document.getElementById('messages');
-            const userMessageText = chatInput.value.trim();
+    async function sendMessage() {
+        console.log('SendMessage function called');
+        const chatInput = document.getElementById('chatInput');
+        const messagesDiv = document.getElementById('messages');
+        const userMessageText = chatInput.value.trim();
 
-            if (userMessageText) {
-                // Display user message
-                const userMessageDiv = document.createElement('div');
-                userMessageDiv.classList.add('message', 'user-message');
-                userMessageDiv.innerHTML = `<p>${userMessageText}</p>`;
-                messagesDiv.appendChild(userMessageDiv);
-                chatInput.value = '';
+        if (userMessageText) {
+            // Display user message
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.classList.add('message', 'user-message');
+            userMessageDiv.innerHTML = `<p>${userMessageText}</p>`;
+            messagesDiv.appendChild(userMessageDiv);
+            chatInput.value = '';
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            // Send message to backend API
+            try {
+                const response = await fetch('/api/spotify_agent_chat/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: userMessageText }),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('HTTP error!', response.status, errorText);
+                    throw new Error(`Server error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const responseText = data.response;
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.classList.add('message', 'bot-message');
+
+                let formattedHtml = '';
+
+                // ===== Artist Section Parsing =====
+                if (responseText.includes("**Recommended Artists:**")) {
+                    const parts = responseText.split("**Recommended Artists:**");
+
+                    // Intro Text
+                    if (parts[0]) {
+                        formattedHtml += `<p>${parts[0].trim()}</p>`;
+                    }
+
+                    // Extract artists
+                    const artistSection = parts[1].split("**Recommended Genres:**")[0];
+                    formattedHtml += `<h4>Recommended Artists:</h4><div class="artist-recommendations">`;
+
+                    const artistMatches = [...artistSection.matchAll(/\*\s+([^*]+)\s+-\s+(https:\/\/[^\s]+)/g)];
+                    artistMatches.forEach(match => {
+                        const artistName = match[1].trim();
+                        const imageUrl = match[2].trim();
+                        formattedHtml += `<div class="artist-card">
+                                            <img src="${imageUrl}" alt="${artistName}">
+                                            <p>${artistName}</p>
+                                          </div>`;
+                    });
+                    formattedHtml += `</div>`;
+
+                    // ===== Genre Section (Optional) =====
+                    if (responseText.includes("**Recommended Genres:**")) {
+                        const genresPart = responseText.split("**Recommended Genres:**")[1];
+                        const genreMatches = [...genresPart.matchAll(/\*\s+([^\n]+)/g)];
+                        if (genreMatches.length > 0) {
+                            formattedHtml += `<h4>Recommended Genres:</h4><ul class="genre-list">`;
+                            genreMatches.forEach(match => {
+                                formattedHtml += `<li>${match[1].trim()}</li>`;
+                            });
+                            formattedHtml += `</ul>`;
+                        }
+                    }
+
+                } else {
+                    // Fallback: plain response
+                    formattedHtml = `<p>${responseText}</p>`;
+                }
+
+                botMessageDiv.innerHTML = formattedHtml;
+                messagesDiv.appendChild(botMessageDiv);
                 messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-                // Send message to backend API
-                try {
-                    const response = await fetch('/api/spotify_agent_chat/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ message: userMessageText }),
-                    });
-
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        console.error('HTTP error!', response.status, errorText);
-                        throw new Error(`Server error: ${response.status}`);
-                    }
-
-                    const data = await response.json();
-
-                    // Display bot response
-                    const botMessageDiv = document.createElement('div');
-                    botMessageDiv.classList.add('message', 'bot-message');
-                    
-                    const responseText = data.response;
-                    let formattedHtml = '';
-
-                    const artistRegex = /\*\s+\*\*([^*]+)\*\*\s+\(\[Image URL\]\(([^)]+)\)\)/g;
-                    
-                    if (responseText.match(artistRegex)) {
-                        const introText = responseText.split(/\*\s+\*\*/)[0];
-                        if (introText) {
-                            formattedHtml += `<p>${introText.trim()}</p>`;
-                        }
-
-                        formattedHtml += `<h4>Recommended Artists:</h4><div class="artist-recommendations">`;
-                        const artistMatches = [...responseText.matchAll(artistRegex)];
-                        artistMatches.forEach(match => {
-                            const artistName = match[1].trim();
-                            const imageUrl = match[2];
-                            formattedHtml += `<div class="artist-card">
-                                                <img src="${imageUrl}" alt="${artistName}">
-                                                <p>${artistName}</p>
-                                             </div>`;
-                        });
-                        formattedHtml += `</div>`;
-
-                    } else {
-                        formattedHtml = `<p>${responseText}</p>`;
-                    }
-
-                    botMessageDiv.innerHTML = formattedHtml;
-                    messagesDiv.appendChild(botMessageDiv);
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-                } catch (error) {
-                    console.error('Error sending message:', error);
-                    const errorMessageDiv = document.createElement('div');
-                    errorMessageDiv.classList.add('message', 'bot-message');
-                    errorMessageDiv.innerHTML = `<p>Error: Could not get a response from the Spotify Agent.</p>`;
-                    messagesDiv.appendChild(errorMessageDiv);
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                }
+            } catch (error) {
+                console.error('Error sending message:', error);
+                const errorMessageDiv = document.createElement('div');
+                errorMessageDiv.classList.add('message', 'bot-message');
+                errorMessageDiv.innerHTML = `<p>Error: Could not get a response from the Spotify Agent.</p>`;
+                messagesDiv.appendChild(errorMessageDiv);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
             }
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>
