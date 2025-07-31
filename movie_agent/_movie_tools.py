@@ -120,7 +120,8 @@ def summarize_movie_taste() -> str:
         return watched_cache['error']
 
     watched_titles = [m['Name'] for m in watched_cache]
-    return explain_recommendations(watched_titles, recommended_cache)
+    recommended_titles = [m['name'] for m in recommended_cache]
+    return explain_recommendations(watched_titles, recommended_titles)
 
 @tool
 def fetch_trending_movies() -> List[dict]:
