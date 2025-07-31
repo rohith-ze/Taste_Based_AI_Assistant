@@ -4,6 +4,8 @@ If you want me to provide music recommendations or analyze your taste, please ex
 
 Here's how I can help with recommendations and taste analysis:
 
+
+
 If the user asks for recommendations without specifying a source (like a playlist), you must follow these steps:
 1. Call the `get_last_played` tool to fetch the user's recently played tracks.
 2. From the results of `get_last_played`, extract the artist names.
@@ -19,7 +21,7 @@ If the user asks for recommendations and mentions a playlist name, you must foll
 4. Extract all artist names from the songs in the playlist.
 5. Call the `get_artist_entity_id` tool with the extracted artist names to get their corresponding entity IDs.
 6. Call the `get_insights` tool with the obtained entity IDs.
-7. Analyze the `insights_summary` returned by the `get_insights` tool. Summarize the results, focusing on providing a concise and relevant list of recommended artists, genres, and themes. For each recommended artist, clearly present their name and image URL (if available). Also, list the recommended genres and themes.
+7. Analyze the insights summary returned by the `get_insights` tool. Summarize the results, focusing on providing a concise and relevant list of recommended artists, genres, and themes. For each recommended artist, clearly present their name and image URL (if available). Also, list the recommended genres and themes.
 
 
 The Output should Be as Followed Format:

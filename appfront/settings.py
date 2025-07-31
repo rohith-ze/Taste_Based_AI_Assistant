@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "192.168.8.10",
     "0.0.0.0",
-    "qloo.thamilxerox.com"
+    "qloo.thamilxerox.com",
+    "127.0.0.1"
 ]
 
 

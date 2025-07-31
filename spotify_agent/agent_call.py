@@ -22,7 +22,7 @@ if not api_key:
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 # Initialize the language model
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash-lite",
+    model="gemini-2.0-flash-lite",
     temperature=0.7,
     top_p=0.85,
     google_api_key=api_key
@@ -41,7 +41,7 @@ tools = [
 
 # Updated system prompt
 # In agent_call.py
-with open("/var/www/Taste_Based_AI_Assistant/spotify_agent/system_prompt.txt", "r") as f:
+with open("/home/ajay/Documents/sleeping_dog_don/Taste_Based_AI_Assistant/spotify_agent/system_prompt.txt", "r") as f:
     system_prompt = f.read()
 
 prompt = ChatPromptTemplate.from_messages([
