@@ -1,163 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Agent - Gemini AI Assistant</title>
-    <link rel="stylesheet" href="/static/css/gemini_style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spotify Agent - Gemini AI Assistant</title>
+  <link rel="stylesheet" href="/static/css/gemini_style.css"/>
+  <style>
+    .artist-recommendations {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .artist-card {
+      width: 120px;
+      text-align: center;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 8px;
+      background-color: #2a2a2a;
+      color: white;
+    }
+
+    .artist-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .genre-list {
+      list-style-type: disc;
+      padding-left: 20px;
+      color: black;
+      font-weight: 200;
+    }
+
+    h4 {
+      color: white;
+    }
+
+    .bot-message, .user-message {
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <span><b>Spotify Music Recommendation Agent</b></span>
-        <div class="chat-interface">
-            <div class="messages" id="messages">
-                <div class="message bot-message">
-                    <p>Hello! I am the Spotify Agent. How can I help you with music today?</p>
-                </div>
-            </div>
-            <div class="input-area">
-                <input type="text" id="chatInput" placeholder="Ask me about music...">
-                <button id="sendButton">Send</button>
-            </div>
+  <div class="container">
+    <span><b>Spotify Music Recommendation Agent</b></span>
+    <div class="chat-interface">
+      <div class="messages" id="messages">
+        <div class="message bot-message">
+          <p>Hello! I am the Spotify Agent. How can I help you with music today?</p>
         </div>
+      </div>
+      <div class="input-area">
+        <input type="text" id="chatInput" placeholder="Ask me about music..."/>
+        <button id="sendButton">Send</button>
+      </div>
     </div>
+  </div>
 
-   <script>
+  <script>
     document.getElementById('sendButton').addEventListener('click', sendMessage);
     document.getElementById('chatInput').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
     });
 
     async function sendMessage() {
-        console.log('SendMessage function called');
-        const chatInput = document.getElementById('chatInput');
-        const messagesDiv = document.getElementById('messages');
-        const userMessageText = chatInput.value.trim();
+      console.log('SendMessage function called');
+      const chatInput = document.getElementById('chatInput');
+      const messagesDiv = document.getElementById('messages');
+      const userMessageText = chatInput.value.trim();
 
-        if (userMessageText) {
-            // Display user message
-            const userMessageDiv = document.createElement('div');
-            userMessageDiv.classList.add('message', 'user-message');
-            userMessageDiv.innerHTML = `<p>${userMessageText}</p>`;
-            messagesDiv.appendChild(userMessageDiv);
-            chatInput.value = '';
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      if (userMessageText) {
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.classList.add('message', 'user-message');
+        userMessageDiv.innerHTML = `<p>${userMessageText}</p>`;
+        messagesDiv.appendChild(userMessageDiv);
+        chatInput.value = '';
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-            try {
-                const response = await fetch('/api/spotify_agent_chat/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ message: userMessageText }),
-                });
+        try {
+          const response = await fetch('/api/spotify_agent_chat/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: userMessageText }),
+          });
 
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error('HTTP error!', response.status, errorText);
-                    throw new Error(`Server error: ${response.status}`);
-                }
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error('HTTP error!', response.status, errorText);
+            throw new Error(`Server error: ${response.status}`);
+          }
 
-                const data = await response.json();
-                const responseText = data.response;
-                const botMessageDiv = document.createElement('div');
-                botMessageDiv.classList.add('message', 'bot-message');
-                let formattedHtml = '';
+          const data = await response.json();
+          const responseText = data.response;
+          console.log("DEBUG - responseText:", responseText);
 
-                const artistHeader = "**Recommended Artists:**";
-                const genreHeader = "**Recommended Genres:**";
-                const themeHeader = "**Recommended Themes:**";
+          const botMessageDiv = document.createElement('div');
+          botMessageDiv.classList.add('message', 'bot-message');
 
-                let remainingText = responseText;
+          let formattedHtml = '';
+          let artistSection = '';
+          let genreSection = '';
 
-                // Extract intro text
-                const artistHeaderIndex = remainingText.indexOf(artistHeader);
-                if (artistHeaderIndex !== -1) {
-                    const introText = remainingText.substring(0, artistHeaderIndex).trim();
-                    if (introText) {
-                        formattedHtml += `<p>${introText.replace(/\n/g, '<br>')}</p>`;
-                    }
-                    remainingText = remainingText.substring(artistHeaderIndex);
-                }
+          const genreStartIndex = responseText.indexOf('Genres:');
+          if (genreStartIndex !== -1) {
+            artistSection = responseText.substring(0, genreStartIndex).trim();
+            genreSection = responseText.substring(genreStartIndex + 'Genres:'.length).trim();
+          } else {
+            artistSection = responseText.trim();
+          }
 
-                // Extract and render Artists
-                if (remainingText.startsWith(artistHeader)) {
-                    const genreHeaderIndex = remainingText.indexOf(genreHeader);
-                    const artistSection = remainingText.substring(artistHeader.length, genreHeaderIndex !== -1 ? genreHeaderIndex : undefined).trim();
-                    
-                    const artistRegex = /\*\s+([^*]+)\s+-\s+\(\[Image URL\]\(([^)]+)\)\)/g;
-                    const artistMatches = [...artistSection.matchAll(artistRegex)];
+          // Loosened regex to catch multiple format variants
+          const artistRegex = /(.+?)\s*-\s*\(?Image URL\(?([^)]+)\)?\)?/g;
+          const artistMatches = [...artistSection.matchAll(artistRegex)];
 
-                    if (artistMatches.length > 0) {
-                        formattedHtml += `<h4>Recommended Artists:</h4><div class="artist-recommendations">`;
-                        artistMatches.forEach(match => {
-                            const artistName = match[1].trim();
-                            const imageUrl = match[2].trim();
-                            formattedHtml += `<div class="artist-card">
-                                                <img src="${imageUrl}" alt="${artistName}">
-                                                <p>${artistName}</p>
-                                              </div>`;
-                        });
-                        formattedHtml += `</div>`;
-                    }
-                    if (genreHeaderIndex !== -1) {
-                        remainingText = remainingText.substring(genreHeaderIndex);
-                    }
-                }
+          if (artistMatches.length > 0) {
+            formattedHtml += `<h4>Recommended Artists:</h4><div class="artist-recommendations">`;
+            artistMatches.forEach(match => {
+              const artistName = match[1].trim();
+              const imageUrl = match[2].trim();
+              formattedHtml += `
+                <div class="artist-card">
+                  <img src="${imageUrl}" alt="${artistName}">
+                  <p>${artistName}</p>
+                </div>`;
+            });
+            formattedHtml += `</div>`;
+          }
 
-                // Extract and render Genres
-                if (remainingText.startsWith(genreHeader)) {
-                    const themeHeaderIndex = remainingText.indexOf(themeHeader);
-                    const genreSection = remainingText.substring(genreHeader.length, themeHeaderIndex !== -1 ? themeHeaderIndex : undefined).trim();
-                    const genreMatches = [...genreSection.matchAll(/\*\s+([^\n]+)/g)];
-                    if (genreMatches.length > 0) {
-                        formattedHtml += `<h4>Recommended Genres:</h4><ul class="genre-list">`;
-                        genreMatches.forEach(match => {
-                            formattedHtml += `<li>${match[1].trim()}</li>`;
-                        });
-                        formattedHtml += `</ul>`;
-                    }
-                    if (themeHeaderIndex !== -1) {
-                        remainingText = remainingText.substring(themeHeaderIndex);
-                    }
-                }
-                
-                // Extract and render Themes
-                if (remainingText.startsWith(themeHeader)) {
-                    const themesSection = remainingText.substring(themeHeader.length).trim();
-                    const themeMatches = [...themesSection.matchAll(/\*\s+([^\n]+)/g)];
-                    if (themeMatches.length > 0) {
-                        formattedHtml += `<h4>Recommended Themes:</h4><ul class="theme-list">`;
-                        themeMatches.forEach(match => {
-                            formattedHtml += `<li>${match[1].trim()}</li>`;
-                        });
-                        formattedHtml += `</ul>`;
-                    }
-                }
+          // Clean genre section
+          if (genreSection) {
+            let genres = genreSection
+              .replace(/\s+and\s+/gi, ',')
+              .replace(/\s+/g, ' ')
+              .split(/[,|]/)
+              .map(g => g.trim())
+              .filter(Boolean);
 
-                // If no sections were found, display the raw text.
-                if (formattedHtml === '') {
-                    formattedHtml = `<p>${responseText.replace(/\n/g, '<br>')}</p>`;
-                }
-
-                botMessageDiv.innerHTML = formattedHtml;
-                messagesDiv.appendChild(botMessageDiv);
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-            } catch (error) {
-                console.error('Error sending message:', error);
-                const errorMessageDiv = document.createElement('div');
-                errorMessageDiv.classList.add('message', 'bot-message');
-                errorMessageDiv.innerHTML = `<p>Error: Could not get a response from the Spotify Agent.</p>`;
-                messagesDiv.appendChild(errorMessageDiv);
-                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            // fallback split by space if no commas or 'and'
+            if (genres.length === 1 && genres[0].split(' ').length > 1) {
+              genres = genres[0].split(' ').map(g => g.trim()).filter(Boolean);
             }
+
+            if (genres.length > 0) {
+              formattedHtml += `<h4>Recommended Genres:</h4><ul class="genre-list">`;
+              genres.forEach(genre => {
+                formattedHtml += `<li>${genre}</li>`;
+              });
+              formattedHtml += `</ul>`;
+            }
+          }
+
+          if (formattedHtml === '') {
+            formattedHtml = `<p>${responseText.replace(/\n/g, '<br>')}</p>`;
+          }
+
+          botMessageDiv.innerHTML = formattedHtml;
+          messagesDiv.appendChild(botMessageDiv);
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+        } catch (error) {
+          console.error('Error sending message:', error);
+          const errorMessageDiv = document.createElement('div');
+          errorMessageDiv.classList.add('message', 'bot-message');
+          errorMessageDiv.innerHTML = `<p>Error: Could not get a response from the Spotify Agent.</p>`;
+          messagesDiv.appendChild(errorMessageDiv);
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
         }
+      }
     }
-</script>
-
-
+  </script>
 </body>
 </html>
