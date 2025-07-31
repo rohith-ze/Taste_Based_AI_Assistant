@@ -1,7 +1,7 @@
 from langchain.tools import tool
-from couple_emby_utils import get_user_id, get_watched_movies
-from couple_qloo_utils import get_qloo_recommendations
-from couple_gemini_utils import explain_recommendations
+from .couple_emby_utils import get_user_id, get_watched_movies
+from .couple_qloo_utils import get_qloo_recommendations
+from .couple_gemini_utils import explain_recommendations
 import os
 from dotenv import load_dotenv
 from collections import Counter

@@ -26,4 +26,6 @@ urlpatterns = [
     path('api/movie_agent_chat/', views.movie_agent_api, name='movie_agent_api'),
     path('spotify_agent_chat/', views.spotify_agent_chat, name='spotify_agent_chat'),
     path('api/spotify_agent_chat/', views.spotify_agent_api, name='spotify_agent_api'),
+    path('couple_movie_agent_chat/', views.couple_movie_agent_chat, name='couple_movie_agent_chat'),
+    path('api/couple_movie_agent_chat/', views.couple_movie_agent_api, name='couple_movie_agent_api'),
 ]

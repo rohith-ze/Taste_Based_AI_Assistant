@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couple Movie Agent - Gemini AI Assistant</title>
+    <link rel="stylesheet" href="/static/css/gemini_style.css">
+</head>
+<body>
+    <div class="container">
+        <span>Couple Movie Agent</span>
+        <div class="chat-interface">
+            <div class="messages" id="messages">
+                <div class="message bot-message">
+                    <p>Hello! I am the Couple Movie Agent. How can I help you and your partner with movie recommendations today?</p>
+                </div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="chatInput" placeholder="Ask me about movies for couples...">
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('sendButton').addEventListener('click', sendMessage);
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        async function sendMessage() {
+            console.log('sendMessage function called');
+            const chatInput = document.getElementById('chatInput');
+            const messagesDiv = document.getElementById('messages');
+            const userMessageText = chatInput.value.trim();
+
+            if (userMessageText) {
+                // Display user message
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.classList.add('message', 'user-message');
+                userMessageDiv.innerHTML = `<p>${userMessageText}</p>`;
+                messagesDiv.appendChild(userMessageDiv);
+                chatInput.value = '';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+                // Send message to backend API
+                try {
+                    const response = await fetch('/api/couple_movie_agent_chat/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: userMessageText }),
+                    });
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.error('HTTP error! status:', response.status, response.statusText, errorText);
+                        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+                    }
+
+                    const data = await response.json();
+
+                    // Display bot response
+                    const botMessageDiv = document.createElement('div');
+                    botMessageDiv.classList.add('message', 'bot-message');
+                    const responseText = data.response;
+                    let formattedHtml = '';
+
+                    if (responseText.includes("**Recommended Movies:**")) {
+                        const parts = responseText.split("**Recommended Movies:**");
+                        formattedHtml += `<p>${parts[0].trim().replace(/\n/g, '<br>')}</p>`; // Text before recommendations
+
+                        const remainingText = parts[1];
+                        
+                        // The movie list is the first part, separated by a double newline from the summary.
+                        const movieSectionParts = remainingText.split(/\n\s*\n/);
+                        const movieSection = movieSectionParts[0];
+                        const afterMovieSection = movieSectionParts.slice(1).join('<br><br>');
+
+                        formattedHtml += `<h4>Recommended Movies:</h4><div class="movie-recommendations">`;
+                        // Corrected regex to handle `[Image]` instead of `[Image URL]`
+                        const movieMatches = [...movieSection.matchAll(/\*\s+\*\*([^*]+)\*\*\s+\(\[Image\]\(([^)]+)\)\)/g)];
+                        movieMatches.forEach(match => {
+                            const movieName = match[1].trim();
+                            const imageUrl = match[2];
+                            formattedHtml += `<div class="movie-card">
+                                                <img src="${imageUrl}" alt="${movieName}">
+                                                <p>${movieName}</p>
+                                             </div>`;
+                        });
+                        formattedHtml += `</div>`;
+
+                        if (afterMovieSection) {
+                            formattedHtml += `<p>${afterMovieSection.trim().replace(/\n/g, '<br>')}</p>`;
+                        }
+
+                    } else {
+                        formattedHtml = `<p>${responseText.replace(/\n/g, '<br>')}</p>`;
+                    }
+
+                    botMessageDiv.innerHTML = formattedHtml;
+                    messagesDiv.appendChild(botMessageDiv);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+                } catch (error) {
+                    console.error('Error sending message:', error);
+                    const errorMessageDiv = document.createElement('div');
+                    errorMessageDiv.classList.add('message', 'bot-message');
+                    errorMessageDiv.innerHTML = `<p>Error: Could not get a response from the Movie Agent.</p>`;
+                    messagesDiv.appendChild(errorMessageDiv);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

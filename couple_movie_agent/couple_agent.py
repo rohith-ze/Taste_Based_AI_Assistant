@@ -1,7 +1,7 @@
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
-from couple_tools import fetch_joint_watched_movies, recommend_couple_movies, summarize_couple_taste
+from .couple_tools import fetch_joint_watched_movies, recommend_couple_movies, summarize_couple_taste
 import os
 from dotenv import load_dotenv
 

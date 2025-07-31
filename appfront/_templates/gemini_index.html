@@ -20,6 +20,10 @@
                 <img src="https://www.gstatic.com/images/icons/material/system/2x/music_note_gm_grey_24dp.png" alt="Music Icon">
                 <span>Invoke Spotify Music Agent</span>
             </button>
+            <button class="agent-button" id="coupleMovieAgentButton">
+                <img src="https://www.gstatic.com/images/icons/material/system/2x/group_gm_grey_24dp.png" alt="Couple Icon">
+                <span>Couple Movie Recommendations</span>
+            </button>
         </div>
     </div>
 
@@ -30,6 +34,10 @@
 
         document.getElementById('spotifyAgentButton').addEventListener('click', function() {
             window.location.href = '/spotify_agent_chat'; // Redirect to spotify agent chat page
+        });
+
+        document.getElementById('coupleMovieAgentButton').addEventListener('click', function() {
+            window.location.href = '/couple_movie_agent_chat'; // Redirect to couple movie agent chat page
         });
 
         // Basic chat functionality (for demonstration)
