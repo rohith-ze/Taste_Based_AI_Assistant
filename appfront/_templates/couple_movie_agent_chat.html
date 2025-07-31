@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <span>Couple Movie Agent</span>
+        <span><b>Couple Movie Recommendations Agent</b></span>
         <div class="chat-interface">
             <div class="messages" id="messages">
                 <div class="message bot-message">
@@ -69,32 +69,39 @@
                     const responseText = data.response;
                     let formattedHtml = '';
 
-                    if (responseText.includes("**Recommended Movies:**")) {
-                        const parts = responseText.split("**Recommended Movies:**");
-                        formattedHtml += `<p>${parts[0].trim().replace(/\n/g, '<br>')}</p>`; // Text before recommendations
+                    const recommendationHeader = "**Recommended Movies:**";
+                    const headerIndex = responseText.indexOf(recommendationHeader);
 
-                        const remainingText = parts[1];
+                    if (headerIndex !== -1) {
+                        // Text before the recommendations
+                        const beforeText = responseText.substring(0, headerIndex).trim();
+                        if (beforeText) {
+                            formattedHtml += `<p>${beforeText.replace(/\n/g, '<br>')}</p>`;
+                        }
+
+                        // The movie list itself
+                        const afterText = responseText.substring(headerIndex + recommendationHeader.length);
                         
-                        // The movie list is the first part, separated by a double newline from the summary.
-                        const movieSectionParts = remainingText.split(/\n\s*\n/);
-                        const movieSection = movieSectionParts[0];
-                        const afterMovieSection = movieSectionParts.slice(1).join('<br><br>');
+                        const movieRegex = /\*\s+\*\*([^*]+)\*\*\s+\(\[Image\]\(([^)]+)\)\)/g;
+                        const movieMatches = [...afterText.matchAll(movieRegex)];
 
-                        formattedHtml += `<h4>Recommended Movies:</h4><div class="movie-recommendations">`;
-                        // Corrected regex to handle `[Image]` instead of `[Image URL]`
-                        const movieMatches = [...movieSection.matchAll(/\*\s+\*\*([^*]+)\*\*\s+\(\[Image\]\(([^)]+)\)\)/g)];
-                        movieMatches.forEach(match => {
-                            const movieName = match[1].trim();
-                            const imageUrl = match[2];
-                            formattedHtml += `<div class="movie-card">
-                                                <img src="${imageUrl}" alt="${movieName}">
-                                                <p>${movieName}</p>
-                                             </div>`;
-                        });
-                        formattedHtml += `</div>`;
+                        if (movieMatches.length > 0) {
+                            formattedHtml += `<h4>Recommended Movies:</h4><div class="movie-recommendations">`;
+                            movieMatches.forEach(match => {
+                                const movieName = match[1].trim();
+                                const imageUrl = match[2];
+                                formattedHtml += `<div class="movie-card">
+                                                    <img src="${imageUrl}" alt="${movieName}">
+                                                    <p>${movieName}</p>
+                                                 </div>`;
+                            });
+                            formattedHtml += `</div>`;
+                        }
 
-                        if (afterMovieSection) {
-                            formattedHtml += `<p>${afterMovieSection.trim().replace(/\n/g, '<br>')}</p>`;
+                        // Find any summary text that might follow the movie list
+                        const summaryText = afterText.replace(movieRegex, '').trim();
+                        if (summaryText) {
+                             formattedHtml += `<p>${summaryText.replace(/\n/g, '<br>')}</p>`;
                         }
 
                     } else {

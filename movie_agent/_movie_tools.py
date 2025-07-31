@@ -2,7 +2,7 @@
 import os
 from typing import List
 from langchain.tools import tool
-from .emby_utils import get_user_id, get_watched_movies, get_qloo_recommendations, get_trending_movies, get_recent_movies
+from .emby_utils import get_user_id, get_watched_movies, get_qloo_recommendations, get_trending_movies, get_recent_movies, get_movie_details
 from .gemini_utils import explain_recommendations
 from dotenv import load_dotenv
 from collections import Counter
@@ -55,58 +55,75 @@ def fetch_watched_movies() -> List[dict]:
     return [{"Name": m["Name"], "Genres": m["Genres"]} for m in watched_cache]
 
 @tool
-def recommend_movies() -> List[str]:
-    """Recommend movies using Qloo based on both watched history and user location."""
+def recommend_movies(genre: str = None, language: str = None) -> List[str]:
+    """
+    Recommend movies using Qloo, then enrich with genre data from Emby.
+    Can be filtered by genre (e.g., "comedy", "drama") and language (e.g., "english", "french").
+    If no genre or language is specified, it provides general recommendations based on taste and location.
+    """
     global watched_cache, recommended_cache
     if not watched_cache:
         watched_cache = _fetch_movies()
 
-    genre_urn = _get_top_genre(watched_cache)
-    location = USER_LOCATION
-    print(f"[🎯] Fetching recommendations by genre: {genre_urn} and location: {location}")
+    qloo_recs = []
+    # If a specific genre or language is requested, only fetch based on that.
+    if genre or language:
+        genre_urn = f"urn:tag:genre:media:{genre.lower().replace(' ', '_')}" if genre else None
+        print(f"[🎯] Fetching specific recommendations. Genre: {genre_urn}, Language: {language}")
+        qloo_recs = get_qloo_recommendations(
+            genre_urn=genre_urn,
+            year_min=2020,
+            language=language
+        )
+    # Otherwise, get general recommendations.
+    else:
+        genre_urn = _get_top_genre(watched_cache)
+        location = USER_LOCATION
+        print(f"[🎯] Fetching general recommendations. Top Genre: {genre_urn}, Location: {location}")
+        
+        # Step 1: Fetch taste-based recommendations
+        taste_based = get_qloo_recommendations(
+            genre_urn=genre_urn,
+            year_min=2020
+        )
 
-    # Step 1: Fetch taste-based recommendations
-    taste_based = get_qloo_recommendations(
-        genre_urn=genre_urn,
-        year_min=2020,
-        location_query=None  # no location here
-    )
+        # Step 2: Fetch location-based recommendations
+        location_based = get_qloo_recommendations(
+            genre_urn=None,
+            year_min=2020,
+            location_query=location
+        )
+        
+        # Step 3: Merge while preserving order & deduplication
+        seen = set()
+        merged = []
+        for movie in taste_based + location_based:
+            if isinstance(movie, dict) and 'name' in movie:
+                movie_name = movie['name']
+                if movie_name not in seen:
+                    seen.add(movie_name)
+                    merged.append(movie)
+        qloo_recs = merged
 
-    # Step 2: Fetch location-based recommendations
-    location_based = get_qloo_recommendations(
-        genre_urn=None,
-        year_min=2020,
-        location_query=location
-    )
+    # Enrich with genre data from Emby
+    enriched_recs = []
+    for movie in qloo_recs:
+        details = get_movie_details(EMBY_SERVER, EMBY_API_KEY, movie['name'])
+        movie['genres'] = details.get('Genres', [])
+        enriched_recs.append(movie)
 
-    # Step 3: Merge while preserving order & deduplication
-    seen = set()
-    merged = []
-    for movie in taste_based + location_based:
-        # Ensure movie is a dictionary and has a 'name' key
-        if isinstance(movie, dict) and 'name' in movie:
-            movie_name = movie['name']
-            if movie_name not in seen:
-                seen.add(movie_name)
-                merged.append(movie)
-        elif isinstance(movie, str):
-            # Handle case where movie is just a string name
-            if movie not in seen:
-                seen.add(movie)
-                # Create a dictionary structure to be consistent
-                merged.append({'name': movie, 'image_url': None})  # No image URL available
-
-    recommended_cache = merged
+    recommended_cache = enriched_recs
     
-    # Format the output to include markdown for images
+    # Format the output
     formatted_recommendations = []
-    for movie in merged:
+    for movie in enriched_recs:
         movie_name = movie.get('name')
         image_url = movie.get('image_url')
+        genres = ", ".join(movie.get('genres', []))
         if image_url:
-            formatted_recommendations.append(f"* **{movie_name}** ([Image URL]({image_url}))")
+            formatted_recommendations.append(f"* **{movie_name}** ([Image URL]({image_url})) (Genres: {genres})")
         else:
-            formatted_recommendations.append(f"* **{movie_name}**")
+            formatted_recommendations.append(f"* **{movie_name}** (Genres: {genres})")
             
     return formatted_recommendations
 

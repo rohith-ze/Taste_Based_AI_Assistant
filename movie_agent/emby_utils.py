@@ -81,8 +81,38 @@ def get_watched_movies(emby_server, api_key, user_id):
     } for m in movies]
 
 
+def get_movie_details(emby_server, api_key, movie_name):
+    """Fetch movie details from Emby, including genres."""
+    url = f"{emby_server}/Items"
+    params = {
+        'Recursive': 'true',
+        'IncludeItemTypes': 'Movie',
+        'SearchTerm': movie_name,
+        'Fields': 'Genres,GenreItems',
+        'api_key': api_key
+    }
+    print(f"[DEBUG] Searching Emby for '{movie_name}' with URL: {requests.Request('GET', url, params=params).prepare().url}")
+    try:
+        res = requests.get(url, params=params)
+        res.raise_for_status()
+        data = res.json().get('Items', [])
+        if data:
+            print(f"[DEBUG] Found {len(data)} items for '{movie_name}'. Using first result.")
+            movie = data[0] # Assume the first result is the correct one
+            return {
+                'Genres': (
+                    movie.get('Genres') or
+                    [g['Name'] for g in movie.get('GenreItems', []) if 'Name' in g]
+                )
+            }
+        else:
+            print(f"[DEBUG] No items found on Emby for '{movie_name}'.")
+    except Exception as e:
+        print(f"[❌] Error fetching movie details for '{movie_name}': {e}")
+    return {'Genres': []}
+
 # Use Qloo Insights API for movie recommendations
-def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None):
+def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None, language=None):
     url = "https://hackathon.api.qloo.com/v2/insights"
     headers = {
         "x-api-key": os.getenv("QLOO_API_KEY")
@@ -97,6 +127,8 @@ def get_qloo_recommendations(genre_urn=None, year_min=2022, location_query=None)
         params["filter.tags"] = genre_urn
     if location_query:
         params["signal.location.query"] = location_query
+    if language:
+        params["filter.language"] = language
 
     try:
         res = requests.get(url, headers=headers, params=params)
