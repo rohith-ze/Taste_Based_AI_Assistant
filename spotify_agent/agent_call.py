@@ -41,7 +41,7 @@ tools = [
 
 # Updated system prompt
 # In agent_call.py
-with open("/home/ajay/Documents/sleeping_dog_don/Taste_Based_AI_Assistant/spotify_agent/system_prompt.txt", "r") as f:
+with open("/home/rohith/github/Taste_Based_AI_Assistant-4/spotify_agent/system_prompt.txt", "r") as f:
     system_prompt = f.read()
 
 prompt = ChatPromptTemplate.from_messages([
